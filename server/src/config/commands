@@ -1,0 +1,6 @@
+pkill node
+sudo node build/index.js
+npm run dev
+Terminal 1 npm run build 
+Terminal 2 npm run dev
+Terminal 3 ng serve
