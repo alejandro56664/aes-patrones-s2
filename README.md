@@ -1,7 +1,8 @@
-Para ejecutar se debe ejecutar 
+# Appaes
+Para ejecutar se debe ejecutar el backend
 dentro de la carpeta server ejecutar:
 npm run dev
-Dentro de la carpeta client ejecutar:
+Para ejecutar frontend dentro de la carpeta client ejecutar:
 ng serve
 
 En una BD mysql ejecutar el archivo que hay en la carpeta base de datos en el esquema de base de datos preferido.
