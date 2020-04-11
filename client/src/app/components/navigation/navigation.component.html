@@ -13,14 +13,12 @@
           <a *ngIf="currentUser"  class="nav-link" routerLink="/cotizaciones/add" routerLinkActive="Active"><i class="fas fa-plus-square"></i> Crear Cotizacion</a>
         </li>
         <li class="nav-item">
-          <a   *ngIf="currentUser"  class="nav-link" routerLink="/products/add" routerLinkActive="Active"><i class="fas fa-plus-square"></i> Crear Producto</a>
+          <a   *ngIf="currentUser"  style="cursor:pointer" class="nav-link" routerLink="/products/add" routerLinkActive="Active"><i class="fas fa-plus-square"></i> Crear Producto</a>
         </li>
         <li class="nav-item">
           <a *ngIf="!currentUser"  class="nav-link" routerLink="/users/login" routerLinkActive="Active"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
         </li>
-        <li class="nav-item">
-          <a  *ngIf="!currentUser" class="nav-link" routerLink="/users/add" routerLinkActive="Active"><i class="fas fa-user-plus"></i> Crear Usuario</a>
-        </li>
+
         <li class="nav-item">
           <!--<a (click)="openConfirmationDialog()"   class="nav-link" routerLink="/users/logout" routerLinkActive="Active"  data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-in-alt"></i> Cerrar Sesión</a>-->
           <!--<a class="nav-link" routerLink="/users/logout"  routerLinkActive="Active"><i class="fas fa-sign-in-alt"></i> Cerrar Sesión</a>-->
