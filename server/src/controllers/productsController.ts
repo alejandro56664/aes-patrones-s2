@@ -4,7 +4,7 @@ import pool from '../database';
 class ProductsController{
     public async list (req: Request,res: Response)
     { 
-        const products = await pool.query('select * from producto ');
+        const products = await pool.query('select * from producto order by id desc ');
         console.log(products);
         res.json(products);  
 
@@ -19,7 +19,7 @@ class ProductsController{
     }
     public async update(req: Request,res: Response)
     {
-        req.body.create_at=null;
+        req.body.fecha_creacion=null;
 
         await pool.query('UPDATE producto set ? WHERE id = ?',[req.body, req.params.id]);
         
@@ -32,7 +32,7 @@ class ProductsController{
 
         
         const {id}=req.params;
-        const products = await pool.query('DELETE from product where id='+req.params.id);
+        const products = await pool.query('DELETE from producto where id='+req.params.id);
         console.log("Delete"+products )
         
         //const products = await pool.query('select * from product where id='+[id]);

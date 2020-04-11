@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class ProductsController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const products = yield database_1.default.query('select * from producto ');
+            const products = yield database_1.default.query('select * from producto order by id desc ');
             console.log(products);
             res.json(products);
         });
@@ -29,7 +29,7 @@ class ProductsController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            req.body.create_at = null;
+            req.body.fecha_creacion = null;
             yield database_1.default.query('UPDATE producto set ? WHERE id = ?', [req.body, req.params.id]);
             res.json({ message: 'Modificado un producto' });
         });
@@ -37,7 +37,7 @@ class ProductsController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const products = yield database_1.default.query('DELETE from product where id=' + req.params.id);
+            const products = yield database_1.default.query('DELETE from producto where id=' + req.params.id);
             console.log("Delete" + products);
             //const products = await pool.query('select * from product where id='+[id]);
             res.json({ message: 'Producto Eliminado' });

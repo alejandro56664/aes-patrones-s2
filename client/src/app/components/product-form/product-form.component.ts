@@ -64,8 +64,6 @@ export class ProductFormComponent implements OnInit {
   }
   updateProduct(){
     delete this.product.fecha_creacion
-    console.log("Entro a la modificacion"+this.product.created_at);
-
     this.productsService.updateProduct(this.product.id, this.product).subscribe(
 
       res=>{
