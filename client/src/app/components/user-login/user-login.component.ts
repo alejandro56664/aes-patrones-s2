@@ -24,8 +24,7 @@ export class UserLoginComponent implements OnInit {
     token: '',
     fecha_creacion: new Date(),
     fecha_modificacion: new Date()
-  }
-    ;
+  };
   loginForm: FormGroup;
   loading = false;
   submitted = false;
@@ -61,6 +60,7 @@ export class UserLoginComponent implements OnInit {
     this.authenticationService.login(this.user)
       .subscribe(
         data => {
+          
           this.router.navigate(['/products/add']);
         },
         error => {

@@ -2,6 +2,7 @@ export interface User {
     id: number;
     nombres: string;
     apellidos: string;
+    celular: string;
     correo: string; 
     password: string;
     tipo_usuario: string;
