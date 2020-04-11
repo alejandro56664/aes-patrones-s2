@@ -1,3 +1,12 @@
+Para ejecutar se debe ejecutar 
+dentro de la carpeta server ejecutar:
+npm run dev
+Dentro de la carpeta client ejecutar:
+ng serve
+
+En una BD mysql ejecutar el archivo que hay en la carpeta base de datos en el esquema de base de datos preferido.
+
+
 # Appaes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
