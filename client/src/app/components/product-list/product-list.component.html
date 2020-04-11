@@ -8,12 +8,19 @@
         </div>
         
         <div class="card-body">
+
+
             <img src="{{product.url_imagen}}" class="img-fluid" >
 
             <p>{{product.descripcion}}</p>
             <a [routerLink]="['/products/edit/', product.id]" class="btn btn-info btn-block">
                 Editar
             </a>
+
+            <a [routerLink]="['/cotizaciones/add/', product.id, user.id]" class="btn btn-info btn-block">
+                Cotizar
+            </a>
         </div>
+        
     </div>
 </div>

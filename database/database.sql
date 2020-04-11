@@ -1,5 +1,5 @@
 --ALTER USER aessocializacion IDENTIFIED WITH mysql_native_password BY 'aessocializacion';
-CREATE DATABASE aessociidb;
+CREATE DATABASE aessocializacion;
 CREATE TABLE game(
     id serial not null primary key,
     title varchar(180),

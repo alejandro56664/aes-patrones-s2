@@ -8,6 +8,7 @@ import { UserFormComponent } from './components/user-form/user-form.component'
 import { UserLoginComponent } from './components/user-login/user-login.component'
 import { UserLogoutComponent } from './components/user-logout/user-logout.component'
 import { AuthGuard } from '../app/components/athGuard/authGuard';
+import { CotizacionListComponent } from './components/cotizacion-list/cotizacion-list.component';
 const routes: Routes = [
 
   {
@@ -27,8 +28,8 @@ const routes: Routes = [
     component: GameListComponent
   },
   {
-    path: 'cotizaciones/add',
-    component: GameFormComponent
+    path: 'cotizaciones/add/:id_producto/:id_usuario',
+    component: CotizacionListComponent
   },
   {
     path: 'cotizaciones/edit/:id',

@@ -14,7 +14,7 @@ export class UserFormComponent implements OnInit {
     correo: '',
     celular: '',
     password: '',
-    tipo_usuario: '',
+    id_tipo_usuario: '',
     token: '',
     fecha_creacion: new Date(),
     fecha_modificacion: new Date()

@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ProductsService} from '../../services/products.service'
 import { Product } from 'src/app/models/Product';
+import { User } from 'src/app/models/User';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -9,7 +10,9 @@ import { Product } from 'src/app/models/Product';
 export class ProductListComponent implements OnInit {
   @HostBinding('class') classes = "row"
   products: any = [];
-
+  user : any ={
+    id:  ''
+  };
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {

@@ -20,11 +20,12 @@ export class UserLoginComponent implements OnInit {
     apellidos: '',
     correo: '',
     password: '',
-    tipo_usuario: '',
+    id_tipo_usuario: '',
     token: '',
     fecha_creacion: new Date(),
     fecha_modificacion: new Date()
-  };
+  }
+    ;
   loginForm: FormGroup;
   loading = false;
   submitted = false;

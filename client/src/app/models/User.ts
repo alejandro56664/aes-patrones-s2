@@ -5,7 +5,7 @@ export interface User {
     celular: string;
     correo: string; 
     password: string;
-    tipo_usuario: string;
+    id_tipo_usuario: string;
     token: string;
     fecha_creacion: Date; 
     fecha_modificacion: Date
