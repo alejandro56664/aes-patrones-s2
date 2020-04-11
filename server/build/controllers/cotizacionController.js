@@ -16,29 +16,30 @@ const database_1 = __importDefault(require("../database"));
 class CotizacionController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cotizacions = yield database_1.default.query('select * from cotizacion order by id desc ');
+            console.log("Entro a listado de cotizaciones");
+            const cotizacions = yield database_1.default.query('select * from solicitud_cotizacion order by id desc ');
             console.log(cotizacions);
             res.json(cotizacions);
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("Entro a la cotizacion" + req.body);
-            yield database_1.default.query('INSERT INTO cotizacion set ?', [req.body]);
+            console.log("Entro a la cotizacion:    " + req.params.id_producto);
+            yield database_1.default.query('INSERT INTO solicitud_cotizacion set ?', [req.body]);
             res.json({ message: 'Guardado un cotizacion' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             req.body.fecha_creacion = null;
-            yield database_1.default.query('UPDATE cotizacion set ? WHERE id = ?', [req.body, req.params.id]);
+            yield database_1.default.query('UPDATE solicitud_cotizacion set ? WHERE id = ?', [req.body, req.params.id]);
             res.json({ message: 'Modificado un cotizacion' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const cotizacions = yield database_1.default.query('DELETE from cotizacion where id=' + req.params.id);
+            const cotizacions = yield database_1.default.query('DELETE from solicitud_cotizacion where id=' + req.params.id);
             console.log("Delete" + cotizacions);
             //const cotizacions = await pool.query('select * from cotizacion where id='+[id]);
             res.json({ message: 'Producto Eliminado' });
@@ -47,12 +48,12 @@ class CotizacionController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const cotizacions = yield database_1.default.query('select * from cotizacion where id=' + req.params.id);
+            const cotizacions = yield database_1.default.query('select * from solicitud_cotizacion where id=' + req.params.id);
             if (cotizacions.length > 0) {
                 return res.json(cotizacions);
                 console.log(cotizacions);
             }
-            res.status(404).json({ text: "El Producto no existe" });
+            res.status(404).json({ text: "La cotizacion no existe" });
             //const cotizacions = await pool.query('select * from cotizacion where id='+[id]);
         });
     }

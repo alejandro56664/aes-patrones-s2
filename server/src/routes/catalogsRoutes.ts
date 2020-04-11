@@ -11,7 +11,7 @@ class CatalogRoutes{
     config():void{
         this.router.get('/', catalogosController.list);
         this.router.get('/:id', catalogosController.getOne);
-        this.router.post('/',catalogosController.create);
+        this.router.post('/:id/:id',catalogosController.create);
         this.router.delete('/:id',catalogosController.delete);
         this.router.put('/:id',catalogosController.update);
 

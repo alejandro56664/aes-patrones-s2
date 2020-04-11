@@ -18,8 +18,8 @@ export class CotizacionService {
    getCotizacion(id: string){
     return this.http.get(this.API_URI+'/cotizaciones/'+id)
   }
-  saveCotizacion(id_producto: string, id_usuario){
-    return this.http.post(this.API_URI+'/cotizaciones/add', id_producto, id_usuario)
+  saveCotizacion(cotizacion: Cotizacion){ 
+    return this.http.post(this.API_URI+'/cotizaciones/add', cotizacion)
   }
   deleteCotizacion(id: string){
     return this.http.delete(this.API_URI+'/cotizaciones/'+id)

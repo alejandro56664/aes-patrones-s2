@@ -17,11 +17,11 @@
               class="fas fa-plus-square"></i> Mis cotizaciones</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="currentUser" style="cursor:pointer" class="nav-link" routerLink="/products/add"
+          <a *ngIf="currentUser && currentUser.id_tipo_usuario==2 " style="cursor:pointer" class="nav-link" routerLink="/products/add"
             routerLinkActive="Active"><i class="fas fa-plus-square"></i> Crear Producto</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="currentUser" class="nav-link" routerLink="/cotizaciones" routerLinkActive="Active"><i
+          <a *ngIf="currentUser && currentUser.id_tipo_usuario==1" class="nav-link" routerLink="/cotizaciones" routerLinkActive="Active"><i
               class="far fa-list-alt"></i> Mis Cotizaciones</a>
         </li>
         <li class="nav-item">

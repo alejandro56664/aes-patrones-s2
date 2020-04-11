@@ -21,7 +21,12 @@ import { UsersService } from './services/users.service';
 import { ToastrService } from 'ngx-toastr';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { AlertComponent } from './components/alert-component/alert-component';
+import { AlertService } from './services/alert.service';
+import { CotizacionService } from './services/cotizacion.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './services/erro.interceptor.service';
+import { JwtInterceptor } from './helpers/jwtInterceptors/jwtinterceptors';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserFormComponent,
     FooterComponent,
     ConfirmationDialogComponent,
+    AlertComponent
     
   ],
   imports: [
@@ -50,7 +56,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     GamesService,
-    UsersService    
+    UsersService,
+    AlertService,
+    CotizacionService
+
   ],
   bootstrap: [AppComponent]
 })

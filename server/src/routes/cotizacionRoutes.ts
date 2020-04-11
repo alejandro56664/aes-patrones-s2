@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import productsController from '../controllers/productsController'
+import cotizacionController from '../controllers/cotizacionController'
 
 class CotizacionRoutes{
     public router: Router = Router();
@@ -9,11 +9,11 @@ class CotizacionRoutes{
         
     }
     config():void{
-        this.router.get('/', productsController.list);
-        this.router.get('/:id', productsController.getOne);
-        this.router.post('/:id_producto/:id_usuario',productsController.create);
-        this.router.delete('/:id',productsController.delete);
-        this.router.put('/:id',productsController.update);
+        this.router.get('/', cotizacionController.list);
+        this.router.get('/:id', cotizacionController.getOne);
+        this.router.post('/add/',cotizacionController.create);
+        this.router.delete('/:id',cotizacionController.delete);
+        this.router.put('/:id',cotizacionController.update);
 
     }
 }

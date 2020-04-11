@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UsersService } from '../../services/users.service'
-import { User } from '../../models/User'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router'
 import { AuthenticationService } from '../../services/authenticate.service';
+import { AlertService } from '../../services/alert.service';
+
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-user-login',
@@ -36,36 +36,47 @@ export class UserLoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private alertService: AlertService
+  ) {
+    console.log("Valida si el usuario esta logeado")
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/products']);
+    }
+
+
+
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      correo: ['', Validators.required],
       password: ['', Validators.required]
     });
 
   }
 
   // for accessing to form fields
-  get fval() { return this.loginForm.controls; }
+  get f() { return this.loginForm.controls; }
 
   onFormSubmit() {
     this.submitted = true;
+    // reset alerts on submit
+    this.alertService.clear();
     if (this.loginForm.invalid) {
       return;
     }
-  
+
 
     this.loading = true;
     this.authenticationService.login(this.user)
       .subscribe(
         data => {
-          
           this.router.navigate(['/products/add']);
         },
         error => {
-          this.toastr.error(error.message, 'Error');
+  
+          this.alertService.error(error);
           console.log(error)
           this.loading = false;
         });

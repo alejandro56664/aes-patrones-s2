@@ -16,6 +16,7 @@ export class AuthGuard implements CanActivate {
             // authorised so return true
             return true;
         }
+        window.alert("Access not allowed!");
 
         // not logged in so redirect to login page
         this.router.navigate(['/users/login'], { queryParams: { returnUrl: state.url } });

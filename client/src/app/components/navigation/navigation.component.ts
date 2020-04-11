@@ -12,7 +12,12 @@ import { Route } from '@angular/compiler/src/core';
 export class NavigationComponent implements OnInit {
   public currentUser;
   constructor(private authenticationService : AuthenticationService, private router : Router) { 
-  this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')) : '';
+    console.log ("Valida si el usuario esta logeado")
+    if (this.authenticationService.currentUserValue) {
+      this.router.navigate(['/products']);
+    }
+  
+    this.currentUser = localStorage.getItem('currentUser')? JSON.parse(localStorage.getItem('currentUser')) : '';
   }
 
   ngOnInit(): void {
