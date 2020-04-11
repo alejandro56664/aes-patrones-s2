@@ -14,10 +14,11 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 export class ProductFormComponent implements OnInit {
   product: any = {
     id: 0,
-    title: '',
-    description: '',
-    image: '', 
-    created_at: new Date()
+    titulo: '',
+    descripcion: '',
+    id_catalogo: '',
+    url_imagen: '', 
+    fecha_creacion: new Date()
   } 
   ;
   active=1;
@@ -49,27 +50,27 @@ export class ProductFormComponent implements OnInit {
     }
   }
   saveNewProduct(){
-    delete this.product.created_at
+    delete this.product.fecha_creacion
     delete this.product.id
     this.productsService.saveProduct(this.product)
     .subscribe(
       res =>{
         console.log(res);
-        this.router.navigate(['/cotizaciones']);
+        this.router.navigate(['/products']);
       },
       err => console.error(err)
     )
     
   }
   updateProduct(){
-    delete this.product.created_at
+    delete this.product.fecha_creacion
     console.log("Entro a la modificacion"+this.product.created_at);
 
     this.productsService.updateProduct(this.product.id, this.product).subscribe(
 
       res=>{
         console.log(res)
-        this.router.navigate(['/cotizaciones'])
+        this.router.navigate(['/products'])
 
       },
       err=>console.error(err)

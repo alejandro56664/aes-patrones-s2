@@ -35,7 +35,7 @@ const routes: Routes = [
     component: GameFormComponent
   },
   {
-    path: 'products/',
+    path: 'products',
     component: ProductListComponent
   },
   {

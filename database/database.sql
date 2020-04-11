@@ -73,3 +73,4 @@ INSERT INTO aessocializacion.t_usuario
 (nombres, apellidos, correo, password, celular, id_tipo_usuario, token, fecha_creacion)
 VALUES('Nombres', 'Apellidos', 'joxpg@gmail.com', 'holamundo', celular, '1', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGVjayI6dHJ1ZSwiaWF0IjoxNTY2MjQ4MTYwLCJleHAiOjE1NjYyNDk2MDB9.1olkcT6F_e2y2lN9zzHgFcBYnofnD8cmOb7EEKVjSdQ', CURRENT_TIMESTAMP);
 
+INSERT INTO catalogo (descripcion ) VALUES ("Catalogo 1");

@@ -8,7 +8,7 @@
                 </div>
                 <form>
                     <div class="form-group">
-                        <input type="text" name="title" [(ngModel)]="product.titulo" placeholder="Titulo"
+                        <input type="text" name="titulo" [(ngModel)]="product.titulo" placeholder="Titulo"
                             class="form-control">
                     </div>
                     <div class="form-group">
@@ -18,7 +18,7 @@
                     <div class="form-group input-group">
 
                         <select name="id_catalogo" class="form-control" [(ngModel)]="product.id_catalogo">
-                            <option value="1" >Catalogo 1</option>
+                            <option value="1">Catalogo 1</option>
                             <option value="2">Catalogo 2</option>
                         </select>
                     </div> <!-- form-group end.// -->
@@ -38,8 +38,9 @@
         <div class="card-body">
             <p>Previsualizacion</p>
             <img [src]="product.url_imagen == '' ? 'assets/noimage.png' : product.url_imagen" class="card-img-top ">
-            <h3>{{product.id}}. {{product.title == '' ? 'Titulo Producto' : product.titulo}}</h3>
+            <h3>{{product.id}}. {{product.titulo == '' ? 'Titulo Producto' : product.titulo}}</h3>
             <p>{{product.descripcion == '' ? 'Descripcion Producto' : product.descripcion}}</p>
+            <p>{{product.id_catalogo == '' ? 'Catalogo' : product.id_catalogo}}</p>
             <p>{{product.fecha_creacion | date: 'yyyy-mm-dd'}}</p>
         </div>
     </div>

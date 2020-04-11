@@ -5,6 +5,7 @@ import indexRoutes from './routes/indexRoutes'
 import gamesRoutes from './routes/gamesRoutes'
 import usersRoutes from './routes/usersRoutes'
 import authRoutes from './routes/authRoutes'
+import productsRoutes from './routes/productsRoutes'
 class Server{
     public app: Application;
 
@@ -26,6 +27,7 @@ class Server{
         this.app.use('/api/games',gamesRoutes);
         this.app.use('/api/users',usersRoutes);
         this.app.use('/api/auth/login',authRoutes);
+        this.app.use('/api/products',productsRoutes);
 
     }
     start():void{  

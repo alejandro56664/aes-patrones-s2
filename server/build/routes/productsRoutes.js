@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const productsController_1 = __importDefault(require("../controllers/productsController"));
-class GamesRoutes {
+class ProductsRoutes {
     constructor() {
         this.router = express_1.Router();
         this.config();
@@ -18,5 +18,5 @@ class GamesRoutes {
         this.router.put('/:id', productsController_1.default.update);
     }
 }
-const productsRoutes = new GamesRoutes();
+const productsRoutes = new ProductsRoutes();
 exports.default = productsRoutes.router;
