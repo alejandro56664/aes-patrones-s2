@@ -15,18 +15,13 @@
                         <textarea type="text" name="description" [(ngModel)]="product.descripcion" rows="2"
                             placeholder="Descripcion" class="form-control"></textarea>
                     </div>
-                    <div class="form-group d-flex" >
-                        <p>Clasificación:     </p>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Servicio
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Bienes</a>
-                              <a class="dropdown-item" href="#">Servicios</a>
-                            </div>
-                          </div>
-                    </div>
+                    <div class="form-group input-group">
+
+                        <select name="id_catalogo" class="form-control" [(ngModel)]="product.id_catalogo">
+                            <option value="1" >Catalogo 1</option>
+                            <option value="2">Catalogo 2</option>
+                        </select>
+                    </div> <!-- form-group end.// -->
 
                     <div class="form-group">
                         <input type="url" name="image" placeholder="URL de la Imagen" [(ngModel)]="product.url_imagen"

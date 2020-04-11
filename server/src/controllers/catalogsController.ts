@@ -1,18 +1,18 @@
 import {Request, Response, response, request } from 'express';
 import db from '../database'
 import pool from '../database';
-class GamesController{
+class CatalogsController{
     public async list (req: Request,res: Response)
     { 
-        const games = await pool.query('select * from game ');
-        console.log(games);
-        res.json(games);  
+        const catalogs = await pool.query('select * from catalog ');
+        console.log(catalogs);
+        res.json(catalogs);  
 
     }
     public async create(req: Request,res: Response): Promise<void>{
        
 
-        await pool.query('INSERT INTO game set ?',[req.body]);
+        await pool.query('INSERT INTO catalog set ?',[req.body]);
         
         res.json({message: 'Guardado un juego'});
 
@@ -21,9 +21,9 @@ class GamesController{
     {
         req.body.create_at=null;
 
-        await pool.query('UPDATE game set ? WHERE id = ?',[req.body, req.params.id]);
+        await pool.query('UPDATE catalogo set ? WHERE id = ?',[req.body, req.params.id]);
         
-        res.json({message: 'Modificado un juego'});
+        res.json({message: 'Modificado un catalogo'});
    
 
     }
@@ -32,28 +32,28 @@ class GamesController{
 
         
         const {id}=req.params;
-        const games = await pool.query('DELETE from game where id='+req.params.id);
-        console.log("Delete"+games )
+        const catalogs = await pool.query('DELETE from catalogo where id='+req.params.id);
+        console.log("Delete"+catalogs )
         
-        //const games = await pool.query('select * from game where id='+[id]);
-        res.json({message: 'Juego Eliminado'});
+        //const catalogs = await pool.query('select * from catalog where id='+[id]);
+        res.json({message: 'Catalogo Eliminado'});
 
     }
     public async getOne(req: Request,res: Response)
     {
         
         const {id}=req.params;
-        const games = await pool.query('select * from game where id='+req.params.id);
-        if(games.length > 0)
+        const catalogs = await pool.query('select * from catalogo where id='+req.params.id);
+        if(catalogs.length > 0)
         {
-            return res.json(games);
-            console.log(games);
+            return res.json(catalogs);
+            console.log(catalogs);
         }
-            res.status(404).json({text: "El juego no existe"});
+            res.status(404).json({text: "El Catalogo no existe"});
         
-        //const games = await pool.query('select * from game where id='+[id]);
+        //const catalogs = await pool.query('select * from catalog where id='+[id]);
 
     }
 }
- const gamesController = new GamesController();
-export default gamesController 
+ const catalogsController = new CatalogsController();
+export default catalogsController 

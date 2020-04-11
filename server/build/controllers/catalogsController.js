@@ -13,48 +13,48 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class GamesController {
+class CatalogsController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const games = yield database_1.default.query('select * from game ');
-            console.log(games);
-            res.json(games);
+            const catalogs = yield database_1.default.query('select * from catalog ');
+            console.log(catalogs);
+            res.json(catalogs);
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO game set ?', [req.body]);
+            yield database_1.default.query('INSERT INTO catalog set ?', [req.body]);
             res.json({ message: 'Guardado un juego' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             req.body.create_at = null;
-            yield database_1.default.query('UPDATE game set ? WHERE id = ?', [req.body, req.params.id]);
-            res.json({ message: 'Modificado un juego' });
+            yield database_1.default.query('UPDATE catalogo set ? WHERE id = ?', [req.body, req.params.id]);
+            res.json({ message: 'Modificado un catalogo' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('DELETE from game where id=' + req.params.id);
-            console.log("Delete" + games);
-            //const games = await pool.query('select * from game where id='+[id]);
-            res.json({ message: 'Juego Eliminado' });
+            const catalogs = yield database_1.default.query('DELETE from catalogo where id=' + req.params.id);
+            console.log("Delete" + catalogs);
+            //const catalogs = await pool.query('select * from catalog where id='+[id]);
+            res.json({ message: 'Catalogo Eliminado' });
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('select * from game where id=' + req.params.id);
-            if (games.length > 0) {
-                return res.json(games);
-                console.log(games);
+            const catalogs = yield database_1.default.query('select * from catalogo where id=' + req.params.id);
+            if (catalogs.length > 0) {
+                return res.json(catalogs);
+                console.log(catalogs);
             }
-            res.status(404).json({ text: "El juego no existe" });
-            //const games = await pool.query('select * from game where id='+[id]);
+            res.status(404).json({ text: "El Catalogo no existe" });
+            //const catalogs = await pool.query('select * from catalog where id='+[id]);
         });
     }
 }
-const gamesController = new GamesController();
-exports.default = gamesController;
+const catalogsController = new CatalogsController();
+exports.default = catalogsController;
