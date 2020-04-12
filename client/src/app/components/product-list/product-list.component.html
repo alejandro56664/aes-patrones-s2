@@ -11,8 +11,10 @@
 
 
             <img src="{{product.url_imagen}}" class="img-fluid" >
-
-            <p>{{product.descripcion}}</p>
+            <h3>Catalogo : {{product.id_catalogo}}</h3>
+       
+            <p>Descripción: {{product.descripcion}}</p>
+            
             <a *ngIf="user.id_tipo_usuario==2" [routerLink]="['/products/edit/', product.id]" class="btn btn-info btn-block">
                 Editar
             </a>

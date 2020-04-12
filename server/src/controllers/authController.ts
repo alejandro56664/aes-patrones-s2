@@ -4,7 +4,7 @@ import pool from '../database';
 class AuthController{
 
     public async login(req: Request,res: Response){
-        const user =await pool.query('SELECT * FROM t_usuario WHERE correo= ? and password=?',[req.body.user.correo, req.body.user.password]);
+        const user =await pool.query('SELECT * FROM t_usuario WHERE correo= ? and password=?',[req.body.correo, req.body.password]);
         console.log(req)
 
         if(user.length > 0)

@@ -10,22 +10,26 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./cotizacion-list.component.css']
 })
 export class CotizacionListComponent implements OnInit {
+  public idUsuario;
   @HostBinding('class') classes = "row"
   cotizacions: any = [];
   cotizacion : any ={
     id_usuario: '',
     id_producto: ''
   };
-  constructor(private cotizacionsService: CotizacionService, private router : Router, private activatedRoute : ActivatedRoute) { }
+  constructor(private cotizacionsService: CotizacionService, private router : Router, private activatedRoute : ActivatedRoute) {
+    this.idUsuario = localStorage.getItem('idUsuario')? JSON.parse(localStorage.getItem('idUsuario')) : '';
+
+   }
 
   ngOnInit(): void {
     const params =this.activatedRoute.snapshot.params
-    if(params.id_producto && params.id_usuario){
-      console.log("Entro al componente listar cotizaciones" + params.id_producto + params.id_usuario  )
-      this.saveNewCotizacion(params.id_producto , params.id_usuario)
+    if(params.id_producto){
+      console.log("Entro al constructor para guardar cotizaciones" + params.id_producto + params.id_usuario  )
+      this.saveNewCotizacion(params.id_producto , this.idUsuario)
         }
         console.log("Salio al componente listar cotizaciones")
-    this.getCotizaciones();
+        this.getCotizaciones();
 
       
     }
@@ -34,9 +38,23 @@ export class CotizacionListComponent implements OnInit {
   getCotizaciones(){ 
     this.cotizacionsService.getCotizacions().subscribe(
       res => {
-        console.log("Entro a getCotizaciones")
+        
 
         this.cotizacions = res;
+        console.log("Entro a getCotizaciones")
+
+      },
+      err => console.error(err)
+
+    )
+  }
+  getCotizacionesByUser(){ 
+    this.cotizacionsService.getCotizacions().subscribe(
+      res => {
+        
+
+        this.cotizacions = res;
+        console.log("Entro a getCotizaciones")
 
       },
       err => console.error(err)
@@ -56,13 +74,11 @@ export class CotizacionListComponent implements OnInit {
 
     this.cotizacion.id_producto=id_producto;
     this.cotizacion.id_usuario=id_usuario;
-    console.log("Entro a guardar cotizacion"+id_producto, id_usuario, this.cotizacion)
-
     this.cotizacionsService.saveCotizacion(this.cotizacion)
     .subscribe( 
       res =>{
         console.log(res);
-        this.router.navigate(['/cotizaciones/']);
+        this.router.navigate(['/cotizaciones']);
       },
       err => console.error(err)
     )

@@ -72,7 +72,7 @@ export class UserLoginComponent implements OnInit {
     this.authenticationService.login(this.user)
       .subscribe(
         data => {
-          this.router.navigate(['/products/add']);
+          this.router.navigate(['/products/']);
         },
         error => {
   

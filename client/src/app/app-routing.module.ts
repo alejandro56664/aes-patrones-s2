@@ -9,23 +9,24 @@ import { UserLoginComponent } from './components/user-login/user-login.component
 import { UserLogoutComponent } from './components/user-logout/user-logout.component'
 import { AuthGuard } from './helpers/athGuard/authGuard';
 import { CotizacionListComponent } from './components/cotizacion-list/cotizacion-list.component';
+import { AuthenticationService } from './services/authenticate.service';
 const routes: Routes = [
 
   {
     path: '',
     redirectTo: '/users/login',
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     pathMatch: 'full'
   }, 
   {
     path: 'auth/login',
     redirectTo: '/users/login',
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     pathMatch: 'full'
   },
   {
     path: 'cotizaciones',
-    component: GameListComponent
+    component: CotizacionListComponent
   },
   {
     path: 'cotizaciones/add/:id_producto/:id_usuario',
