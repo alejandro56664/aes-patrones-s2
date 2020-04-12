@@ -1,6 +1,6 @@
-<div  >
-<table class="table table-bordered" >
-    <thead >
+<div class="container">
+  <table class="table table-bordered table-striped">
+    <thead>
       <tr>
         <th scope="col">No. Cotización</th>
         <th scope="col">Usuario</th>
@@ -8,19 +8,23 @@
         <th scope="col">Valor</th>
         <th scope="col">Fecha Creación</th>
         <th scope="col">Hora Creación</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cotizacion of cotizacions" >
+      <tr *ngFor="let cotizacion of cotizacions">
         <th scope="row">{{cotizacion.id}}</th>
         <td>{{cotizacion.id_usuario}}</td>
         <td>{{cotizacion.id_producto}}</td>
         <td>{{cotizacion.valor}}</td>
         <td>{{cotizacion.fecha_creacion | date: 'yyyy-mm-dd hh:mm'}}</td>
         <td>{{cotizacion.fecha_creacion | date: 'hh:mm'}}</td>
+        <td> <button class="btn btn-danger" (click)="deleteCotizacion(cotizacion.id)">
+            <i class="far fa-trash-alt"></i>
+          </button></td>
 
       </tr>
-    
+
     </tbody>
   </table>
 </div>
