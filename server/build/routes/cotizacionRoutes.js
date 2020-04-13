@@ -12,7 +12,7 @@ class CotizacionRoutes {
     }
     config() {
         this.router.get('/', cotizacionController_1.default.list);
-        this.router.get('/:id', cotizacionController_1.default.getOne);
+        this.router.get('/:id', cotizacionController_1.default.listByUser);
         this.router.post('/add/', cotizacionController_1.default.create);
         this.router.delete('/:id', cotizacionController_1.default.delete);
         this.router.put('/:id', cotizacionController_1.default.update);

@@ -21,11 +21,8 @@ export class UserFormComponent implements OnInit {
     fecha_creacion: new Date(),
     fecha_modificacion: new Date()
   };
-  constructor(private usersService : UsersService, private router: Router, private authenticationService: AuthenticationService, private activatedRoute : ActivatedRoute) { 
-        // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) {
-          this.router.navigate(['/products']);
-      }
+  constructor(private usersService : UsersService, private router: Router,  private activatedRoute : ActivatedRoute) { 
+      
 
 
    }

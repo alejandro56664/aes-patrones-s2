@@ -10,6 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+  public id_tipo_usuario
   @HostBinding('class') classes = "row"
   products: any = [];
   user: any = {
@@ -28,6 +29,8 @@ export class ProductListComponent implements OnInit {
   public currentUser: Observable<User>;
   constructor(private productsService: ProductsService, private autheticationService : AuthenticationService) { 
 console.log("Constructor Producto"+     this.autheticationService.currentUserValue.id_tipo_usuario)
+this.id_tipo_usuario = localStorage.getItem('id_tipo_usuario')? JSON.parse(localStorage.getItem('id_tipo_usuario')) : '';
+
     this.autheticationService.currentUserValue;
   }
 

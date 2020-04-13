@@ -15,14 +15,13 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/users/login',
-    //canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard],
     pathMatch: 'full'
   }, 
   {
     path: 'auth/login',
-    redirectTo: '/users/login',
-    //canActivate: [AuthGuard],
-    pathMatch: 'full'
+    redirectTo: '/users/login'
+
   },
   {
     path: 'cotizaciones',

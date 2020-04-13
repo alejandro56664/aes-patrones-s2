@@ -15,7 +15,8 @@ export class CotizacionListComponent implements OnInit {
   cotizacions: any = [];
   cotizacion : any ={
     id_usuario: '',
-    id_producto: ''
+    id_producto: '',
+    estado: ''
   };
   constructor(private cotizacionsService: CotizacionService, private router : Router, private activatedRoute : ActivatedRoute) {
     this.idUsuario = localStorage.getItem('idUsuario')? JSON.parse(localStorage.getItem('idUsuario')) : '';
@@ -29,7 +30,7 @@ export class CotizacionListComponent implements OnInit {
       this.saveNewCotizacion(params.id_producto , this.idUsuario)
         }
         console.log("Salio al componente listar cotizaciones")
-        this.getCotizaciones();
+        this.getCotizacionesByUser(this.idUsuario);
 
       
     }
@@ -41,6 +42,7 @@ export class CotizacionListComponent implements OnInit {
         
 
         this.cotizacions = res;
+        JSON.parse(this.cotizacions);
         console.log("Entro a getCotizaciones")
 
       },
@@ -48,13 +50,12 @@ export class CotizacionListComponent implements OnInit {
 
     )
   }
-  getCotizacionesByUser(){ 
-    this.cotizacionsService.getCotizacions().subscribe(
+  getCotizacionesByUser(id_usuario){ 
+    this.cotizacionsService.getCotizacionbyUser(id_usuario).subscribe(
       res => {
         
-
-        this.cotizacions = res;
-        console.log("Entro a getCotizaciones")
+       this.cotizacions = res;
+        console.log("Entro a getCotizacionesByUser"+ res)
 
       },
       err => console.error(err)
@@ -65,7 +66,7 @@ export class CotizacionListComponent implements OnInit {
     this.cotizacionsService.deleteCotizacion(id).subscribe(
       res => {
         console.log(res)
-        this.getCotizaciones();
+        this.getCotizacionesByUser(this.idUsuario);
       },
       err=>console.log(err)
     )
@@ -74,16 +75,18 @@ export class CotizacionListComponent implements OnInit {
 
     this.cotizacion.id_producto=id_producto;
     this.cotizacion.id_usuario=id_usuario;
+    this.cotizacion.estado="Pendiente";
     this.cotizacionsService.saveCotizacion(this.cotizacion)
     .subscribe( 
       res =>{
         console.log(res);
-        this.router.navigate(['/cotizaciones']);
+        this.router.navigate(['/cotizaciones/']);
       },
       err => console.error(err)
     )
     
   }
+
   
 
 

@@ -22,6 +22,19 @@ class CotizacionController {
             res.json(cotizacions);
         });
     }
+    listByUser(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("Entro a listado de cotizaciones por usuario" + req.params.id);
+            //const cotizacions = await pool.query('select * from solicitud_cotizacion sc inner join t_usuario tu on tu.id=sc.id_usuario where sc.id_usuario='+req.params.id);
+            //let cotizacions = await pool.query ("select 'id', c.id, 'id_usuario', c.id_usuario, \
+            //JSON_ARRAYAGG( json_object( 'id', p.id, 'descripcion', p.descripcion ) ) as producto   \
+            //from solicitud_cotizacion c inner join producto p on p.id = c.id_producto  where c.id_usuario='1' \
+            //group by c.id",[req.params.id])
+            const cotizacions = yield database_1.default.query('select sc.id, sc.id_producto, sc.id_usuario, sc.estado, sc.fecha_creacion, sc.fecha_modificacion, tu.nombres, tu.celular , tu.correo , tu.fecha_creacion as tu_fecha_creacion , tu.fecha_modificacion as tu_fecha_modificación, p.descripcion , p.titulo   from solicitud_cotizacion sc left join t_usuario tu on tu.id=sc.id_usuario left join producto p on p.id = sc.id_producto  where sc.id_usuario=' + req.params.id);
+            console.log("Cotizations" + cotizacions);
+            res.json(cotizacions);
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("Entro a la cotizacion:    " + req.params.id_producto);

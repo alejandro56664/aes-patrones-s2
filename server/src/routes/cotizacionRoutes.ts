@@ -10,7 +10,7 @@ class CotizacionRoutes{
     }
     config():void{
         this.router.get('/', cotizacionController.list);
-        this.router.get('/:id', cotizacionController.getOne);
+        this.router.get('/:id', cotizacionController.listByUser);
         this.router.post('/add/',cotizacionController.create);
         this.router.delete('/:id',cotizacionController.delete);
         this.router.put('/:id',cotizacionController.update);

@@ -15,7 +15,7 @@ export class CotizacionService {
    getCotizacions(){
      return this.http.get(this.API_URI+'/cotizaciones')
    }
-   getCotizacion(id: string){
+   getCotizacionbyUser(id: string){
     return this.http.get(this.API_URI+'/cotizaciones/'+id)
   }
   saveCotizacion(cotizacion: Cotizacion){ 
