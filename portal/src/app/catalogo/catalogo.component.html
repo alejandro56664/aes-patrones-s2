@@ -1,0 +1,5 @@
+﻿<h2>Mi Catalogo</h2>
+<a href="/catalogo/registrar">Nuevo Bien</a>
+<div class="card-deck">
+  <cotizable *ngFor="let cotizable of cotizables" (cotizableClicked)="onCotizableClick($event)" [cotizable]="cotizable" [tipoUsuario]="currentUser.tipo"></cotizable>
+</div>

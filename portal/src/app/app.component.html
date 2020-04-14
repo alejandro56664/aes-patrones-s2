@@ -1,0 +1,26 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="usuarioActual">
+    <div class="navbar-nav">
+        <span class="navbar-text">
+            S2
+          </span>
+        <a class="nav-item nav-link" routerLink="/">Principal</a>
+        <a class="nav-item nav-link" (click)="logout()">Cerrar Sesión</a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container-fluid">
+        <alert></alert>
+        <router-outlet></router-outlet>
+        
+    </div>
+</div>
+
+<!-- credits -->
+<div class="text-center">
+    <p>Socialización 2</p>
+    <p>AES Patrones de arquitectura - 2020 I </p>
+
+</div>

@@ -1,0 +1,8 @@
+﻿<div  class="list-group-item list-group-item-action" (click)="verDetalle(event$)">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{solicitud.cotizable.nombre}}</h5>
+    <small>{{solicitud.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
+  </div>
+  <p class="mb-1">Descripción: {{solicitud.cotizable.descripcion}}</p>
+  <small>Codigo: {{solicitud.cotizable.codigo}}</small>
+</div>

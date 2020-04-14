@@ -1,0 +1,22 @@
+﻿<form [formGroup]="buscarForm" (ngSubmit)="onSubmit()" class="input-group mb-3">
+    <div class="form-group">
+        
+    </div>
+
+    <input  type="text" 
+            formControlName="terminosDeBusqueda"
+            class="form-control" 
+            [ngClass]="{ 'is-invalid': submitted && f.terminosDeBusqueda.errors }"
+            placeholder="Buscar bienes (productos y servicios)" 
+            aria-label="Recipient's username" aria-describedby="basic-addon2" />
+    <div *ngIf="submitted && f.terminosDeBusqueda.errors" class="invalid-feedback">
+        <div *ngIf="f.terminosDeBusqueda.errors.required">Necesitas poner una terminosDeBusqueda de tu producto o servicio</div>
+    </div>
+    <button [disabled]="loading" class="btn btn-outline-secondary" >
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Buscar
+    </button>
+</form>
+<div class="card-deck">
+    <cotizable *ngFor="let cotizable of resultados" (cotizableClicked)="onCotizableClick($event)" [cotizable]="cotizable" [tipoUsuario]="currentUser.tipo"></cotizable>
+</div>

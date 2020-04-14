@@ -1,0 +1,53 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <h2>Crear una cuenta</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="tipo">Tipo de cuenta</label>
+                    <input type="text" formControlName="tipo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }" />
+                    <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
+                        <div *ngIf="f.tipo.errors.required">El tipo de cuenta es requerido</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre(s)</label>
+                    <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+                    <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                        <div *ngIf="f.nombre.errors.required">El nombre es requerido</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido(s)</label>
+                    <input type="text" formControlName="apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+                    <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+                        <div *ngIf="f.apellido.errors.required">El apellido es requerido</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">El correo electrónico es requerido</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                        <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos 6 caracteres</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Registrar
+                    </button>
+                    <a routerLink="/login" class="btn btn-link">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
