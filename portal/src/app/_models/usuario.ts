@@ -4,6 +4,7 @@
     password: string;
     nombre: string;
     apellido: string;
-    tipo: string;
+    celular: string;
+    id_tipo_usuario: string;
     token: string;
 }

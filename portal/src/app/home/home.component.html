@@ -11,12 +11,12 @@
 
 <div class="jumbotron">
     <h1 class="display-4">Hola, {{currentUser.nombre}}!</h1>
-    <p class="lead">Bienvenido a S2 la plataforma para realizar cotizaciones en internet</p>
-    <buscar-cotizables  *ngIf="currentUser.tipo === 'comprador'" [currentUser]="currentUser"></buscar-cotizables>
+    <p class="lead">Bienvenido a Cotiza Fácil la plataforma para realizar cotizaciones en internet</p>
+    <buscar-cotizables  *ngIf="currentUser.id_tipo_usuario === 'comprador'" [currentUser]="currentUser"></buscar-cotizables>
     <hr class="my-4">
     <p>A continuación te presentamos algunas opciones que pueden ser de tu interes.</p>
 
-    <div class="btn-group" role="group" aria-label="Basic example" *ngIf="currentUser.tipo === 'proveedor'">
+    <div class="btn-group" role="group" aria-label="Basic example" *ngIf="currentUser.id_tipo_usuario === 'proveedor'">
       <button type="button" 
               class="btn btn-secondary" 
               routerLink="/catalogo" 
@@ -28,7 +28,7 @@
               routerLinkActive="active" >Cotizaciones</button>
   </div>
   <div class="btn-group" role="group" aria-label="Basic example"
-      *ngIf="currentUser.tipo === 'comprador'">
+      *ngIf="currentUser.id_tipo_usuario === 'comprador'">
     <button type="button" 
           class="btn btn-secondary"
           routerLink="/solicitud-cotizacion" 

@@ -27,6 +27,7 @@ import { CotizacionComponent } from './_components/cotizacion';
 import { SolicitudCotizacionComponent } from './_components/solicitud-cotizacion';
 import { MisSolicitudesComponent } from './solicitudes';
 import { GestionarSolicitudCotizacionComponent } from './gestionar-solicitud-cotizacion';
+import { FooterComponent } from './_components/footer/footer.component';
 
 
 
@@ -44,6 +45,7 @@ import { GestionarSolicitudCotizacionComponent } from './gestionar-solicitud-cot
         LoginComponent,
         RegistrarUsuarioComponent,
         AlertComponent,
+        FooterComponent,
 
         // COmponentes propios de la aplicación (dominio)
         //Bien

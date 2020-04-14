@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
         private userService: UserService
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
-        console.log(`tipo usuario: ${this.currentUser.tipo}`)
+        console.log(`tipo usuario: ${this.currentUser.id_tipo_usuario}`)
     }
 
     ngOnInit() {
