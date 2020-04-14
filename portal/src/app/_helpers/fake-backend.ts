@@ -69,7 +69,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (!user) return error('El correo electrónico o la contraseña son incorrectos');
             return ok({
                 id: user.id,
-                tipo: user.tipo,
+                id_tipo_usuario: user.id_tipo_usuario,
+                celular: user.celular,
                 email: user.email,
                 nombre: user.nombre,
                 apellido: user.apellido,
