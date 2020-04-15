@@ -22,6 +22,8 @@ import { BuscarCotizablesComponent } from './buscar-cotizable';
 
 //Cotizacion
 import { CotizacionComponent } from './_components/cotizacion';
+import { CrearCotizacionComponent } from './_components/crear-cotizacion';
+
 
 //SolicitudCotizacion
 import { SolicitudCotizacionComponent } from './_components/solicitud-cotizacion';
@@ -56,6 +58,7 @@ import { FooterComponent } from './_components/footer/footer.component';
 
         //Cotizacion
         CotizacionComponent,
+        CrearCotizacionComponent,
 
         //SolicitudCotizacion
         SolicitudCotizacionComponent,

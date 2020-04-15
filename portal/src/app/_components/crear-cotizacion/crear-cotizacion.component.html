@@ -1,0 +1,18 @@
+﻿<div class="card card-body">
+  <label>Crear cotización</label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+    <input   [disabled]="loading" class="form-control"  min="1" name="quantity" value="1" type="number" (change)="onPrecioChange($event)" >
+    <div class="input-group-append">
+      <span class="input-group-text">.00</span>
+    </div>
+    <div class="input-group-append">
+      <button  [disabled]="loading" class="btn btn-outline-secondary" (click)="onEnviarClicked()" type="button">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        Envíar</button>
+    </div>
+  </div>
+</div>
+

@@ -49,6 +49,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 //solicitudes
                 case url.endsWith('/solicitudes-cotizacion/registrar') && method === 'POST':
                     return registrarSolicitud();
+					   case url.endsWith('/responder') && method === 'POST':
+                    return responderSolicitud();												 
+												
                 case url.endsWith('/solicitudes-cotizacion') && method === 'GET':
                     return getSolicitudes();
                 case url.match(/\/solicitudes-cotizacion\/\d+$/) && method === 'DELETE':
@@ -100,7 +103,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function deleteUser() {
             if (!isLoggedIn()) return unauthorized();
 
-            users = users.filter(x => x.id !== idFromUrl());
+            users = users.filter(x => x.id !== idFromUrl(1));
             localStorage.setItem('users', JSON.stringify(users));
             return ok();
         }
@@ -141,7 +144,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function deleteCotizable() {
             if (!isLoggedIn()) return unauthorized();
 
-            cotizables = cotizables.filter(x => x.id !== idFromUrl());
+            cotizables = cotizables.filter(x => x.id !== idFromUrl(1));
             localStorage.setItem('catalogo', JSON.stringify(cotizables));
             return ok();
         }
@@ -156,6 +159,29 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             localStorage.setItem('solicitudes', JSON.stringify(solicitudes));
 
             return ok();
+		 }
+
+        function responderSolicitud(){
+            if (!isLoggedIn()) return unauthorized();
+
+            const cotizacion = body
+            let _idFromUrl = idFromUrl(2)
+            let lsolicitud = solicitudes.filter(x => x.id === _idFromUrl);
+
+            if(lsolicitud.length > 0){
+                let solicitud = lsolicitud[0]
+                let cotizaciones = solicitud.cotizaciones || []
+                cotizaciones.push(cotizacion)
+                solicitud.cotizaciones = cotizaciones
+
+                solicitudes = solicitudes.filter(x => x.id !== idFromUrl(1));
+                solicitudes.push(solicitud)
+                localStorage.setItem('solicitudes', JSON.stringify(solicitudes));
+            }
+            
+
+            return ok();
+ 
         }
 
         function getSolicitudes() {
@@ -166,7 +192,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function deleteSolicitud() {
             if (!isLoggedIn()) return unauthorized();
 
-            solicitudes = solicitudes.filter(x => x.id !== idFromUrl());
+            solicitudes = solicitudes.filter(x => x.id !== idFromUrl(1));
             localStorage.setItem('solicitudes', JSON.stringify(solicitudes));
             return ok();
         }
@@ -174,7 +200,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function getSolicitud() {
             if (!isLoggedIn()) return unauthorized();
 
-            let solicitud = solicitudes.filter(x => x.id === idFromUrl());
+            let solicitud = solicitudes.filter(x => x.id === idFromUrl(1));
             return ok(solicitud[0]);
         }
         // helper functions
@@ -195,9 +221,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return headers.get('Authorization') === 'Bearer fake-jwt-token';
         }
 
-        function idFromUrl() {
-            const urlParts = url.split('/');
-            return parseInt(urlParts[urlParts.length - 1]);
+        function idFromUrl(index) {
+           const urlParts = url.split('/');
+            let last = urlParts[urlParts.length - index]
+            return parseInt(last);			  
         }
     }
 }

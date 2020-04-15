@@ -1,6 +1,8 @@
 ﻿<div class="row justify-content-md-center">
   <div class="card card-body col col-lg-6">
     <h2>Gestionar solicitud de Cotización</h2>
+
+    <h4>A continuación se presentan sus Cotizaciones</h4>
     <div class="list-group-item list-group-item-action" (click)="verDetalle(event$)">
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{solicitud.cotizable.nombre}}</h5>
@@ -9,11 +11,18 @@
       <p class="mb-1">Descripción: {{solicitud.cotizable.descripcion}}</p>
       <small>Codigo: {{solicitud.cotizable.codigo}}</small>
     </div>
+   
+    <div class="list-group">
+      <cotizacion *ngFor="let cotizacion of solicitud.cotizaciones" (cotizacionClicked)="clickCotizacion($event)"
+        [cotizacion]="cotizacion"></cotizacion>
+
+
+
+    </div>
     <div *ngIf="currentUser.tipo === 'proveedor'">
-      Aquí debería aparecer un componente que permita crear una cotización
+      <crear-cotizacion [idSolicitud]="idSolicitud"></crear-cotizacion>
     </div>
-    <div *ngIf="currentUser.tipo === 'comprador'">
-      Aquí debería aparecer todas las cotizaciones que hicieron los proveedores
-    </div>
+
+
   </div>
 </div>
