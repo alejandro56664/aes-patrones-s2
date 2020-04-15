@@ -4,6 +4,7 @@
     <button type="button" class="btn btn-info" routerLink="/catalogo/registrar" routerLinkActive="active"> Añadir
       Bien/Servicio</button>
    <!-- <a href="/catalogo/registrar">Nuevo Bien/Servicio</a>-->
+   <p></p>
     <div class="card-deck">
       <cotizable *ngFor="let cotizable of cotizables" (cotizableClicked)="onCotizableClick($event)"
         [cotizable]="cotizable" [tipoUsuario]="currentUser.id_tipo_usuario"></cotizable>
