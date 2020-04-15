@@ -1,74 +1,80 @@
-﻿<div class="container">
-    <div class="row">
-        <div class="col-sm-6 offset-sm-3">
+﻿<div class="row justify-content-md-center">
+    <div class="card card-body col col-lg-6">
 
-            <h2>{{(this.modoOperacion === 'registrar')?'Registrar un nuevo Bien':'Actualizar Bien'}}</h2>
+        <h2>{{(this.modoOperacion === 'registrar')?'Registrar un nuevo Bien/Servicio':'Modificar un Bien' / Servicio}}</h2>
 
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
-                    <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
-                        <div *ngIf="f.nombre.errors.required">El nombre del Bien es requerido</div>
-                    </div>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="titulo">Titulo</label>
+                <input type="text" formControlName="titulo" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.titulo.errors }" />
+                <div *ngIf="submitted && f.titulo.errors" class="invalid-feedback">
+                    <div *ngIf="f.titulo.errors.required">El titulo es requerido</div>
                 </div>
-                <div class="form-group">
-                    <label for="tipo">Tipo (Producto o Servicio)</label>
-                    <input type="text" formControlName="tipo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }" />
-                    <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
-                        <div *ngIf="f.tipo.errors.required">El Tipo es requerido</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="descripcion">Descripción</label>
-                    <input type="text" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }" />
-                    <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
-                        <div *ngIf="f.descripcion.errors.required">La descripción es requerida</div>
-                    </div>
-                </div>
+            </div>
+            <div class="form-group">
+                <label for="tipo">Tipo Producto</label>
+                <select name="tipo" formControlName="tipo" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }">
+                    <option value="Bien">Bien</option>
+                    <option value="Servicio">Servicio</option>
+                </select>
 
-                <div class="form-group">
-                    <label for="codigo">Código</label>
-                    <input type="text" formControlName="codigo" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.codigo.errors }" />
-                    <div *ngIf="submitted && f.codigo.errors" class="invalid-feedback">
-                        <div *ngIf="f.codigo.errors.required">El Código es requerido</div>
-                    </div>
+                <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
+                    <div *ngIf="f.tipo.errors.required">El Tipo es requerido</div>
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <input type="text" formControlName="descripcion" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }" />
+                <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+                    <div *ngIf="f.descripcion.errors.required">La descripción es requerida</div>
+                </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="imagen">Url Imagen</label>
-                    <input type="url" formControlName="imagen" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.imagen.errors }" />
-                    <div *ngIf="submitted && f.imagen.errors" class="invalid-feedback">
-                        <div *ngIf="f.imagen.errors.required">Necesitas poner una imagen de tu producto o servicio</div>
-                    </div>
+            <div class="form-group">
+                <label for="codigo">Código</label>
+                <input type="text" formControlName="codigo" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.codigo.errors }" />
+                <div *ngIf="submitted && f.codigo.errors" class="invalid-feedback">
+                    <div *ngIf="f.codigo.errors.required">El Código es requerido</div>
                 </div>
+            </div>
 
-                <div class="form-group" *ngIf="modoOperacion === 'registrar'">
-                    <button [disabled]="loading" class="btn btn-primary" >
-                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                        Registrar
-                    </button>
-                    <a routerLink="/catalogo" class="btn btn-link">Cancelar</a>
+            <div class="form-group">
+                <label for="imagen">Url Imagen</label>
+                <input type="url" formControlName="imagen" class="form-control" [(ngModel)]="imagen"
+                    [ngClass]="{ 'is-invalid': submitted && f.imagen.errors }" />
+                <div *ngIf="submitted && f.imagen.errors" class="invalid-feedback">
+                    <div *ngIf="f.imagen.errors.required">Necesitas poner una URL de imagen para tu bien o servicio</div>
                 </div>
-                <div class="form-group" *ngIf="modoOperacion==='gestionar'">
-                    <button [disabled]="loading" class="btn btn-primary">
-                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                        Actualizar
-                    </button>
-                   
-                    <a routerLink="/catalogo" class="btn btn-link">Cancelar</a>
-                </div>
-                
-            </form>
-           
-        </div>
-        <div class="col-sm-6 offset-sm-3">
-            <button [disabled]="loading"
-                 class="btn btn-danger btn-sm " 
-                (click)="onEliminarClick()"  
-                *ngIf="modoOperacion==='gestionar'">
-                Eliminar
-            </button>
-        </div>
+                <img [src]="imagen == '' ? 'assets/noimage.png' : imagen" class="card-img-top ">
+            </div>
+
+            <div class="form-group" *ngIf="modoOperacion === 'registrar'">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Registrar
+                </button>
+                <a routerLink="/catalogo" class="btn btn-link">Cancelar</a>
+            </div>
+            <div class="form-group" *ngIf="modoOperacion==='gestionar'">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Actualizar
+                </button>
+
+                <a routerLink="/catalogo" class="btn btn-link">Cancelar</a>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col-sm-6 offset-sm-3">
+        <button [disabled]="loading" class="btn btn-danger btn-sm " (click)="onEliminarClick()"
+            *ngIf="modoOperacion==='gestionar'">
+            Eliminar
+        </button>
     </div>
 </div>

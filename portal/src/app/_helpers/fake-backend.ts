@@ -125,8 +125,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (!isLoggedIn()) return unauthorized();
             return ok({
                 id: 0,
-                tipo: 'producto',
-                nombre: 'Mock Nombre',
+                tipo: 'Bien',
+                titulo: 'Mock Titulo',
                 descripcion: 'Mock Descripción',
                 codigo: 'Mock0001',
                 imagen: 'No'

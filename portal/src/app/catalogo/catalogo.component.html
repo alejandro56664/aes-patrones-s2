@@ -1,5 +1,14 @@
-﻿<h2>Mi Catalogo</h2>
-<a href="/catalogo/registrar">Nuevo Bien</a>
-<div class="card-deck">
-  <cotizable *ngFor="let cotizable of cotizables" (cotizableClicked)="onCotizableClick($event)" [cotizable]="cotizable" [tipoUsuario]="currentUser.tipo"></cotizable>
-</div>
+﻿<div class="row justify-content-md-center">
+  <div class="card card-body col col-lg-6">
+    <h2>Mi Catalogo</h2>
+    <button type="button" class="btn btn-info" routerLink="/catalogo/registrar" routerLinkActive="active"> Añadir
+      Bien/Servicio</button>
+   <!-- <a href="/catalogo/registrar">Nuevo Bien/Servicio</a>-->
+    <div class="card-deck">
+      <cotizable *ngFor="let cotizable of cotizables" (cotizableClicked)="onCotizableClick($event)"
+        [cotizable]="cotizable" [tipoUsuario]="currentUser.id_tipo_usuario"></cotizable>
+
+    </div>
+    <p></p>
+    <a routerLink="/" class="btn btn-link">Devolver</a>
+  </div>

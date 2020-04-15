@@ -1,6 +1,11 @@
-﻿<h2>Mis Solicitudes de Cotización</h2>
-    
-<div class="list-group">
-  <solicitud-cotizacion *ngFor="let solicitud of solicitudes" (solicitudClicked)="clickSolicitudCotizacion($event)" [solicitud]="solicitud"></solicitud-cotizacion>
- 
+﻿<div class="row justify-content-md-center">
+  <div class="card card-body col col-lg-6">
+    <h2>Mis Solicitudes de Cotización</h2>
+
+    <div class="list-group">
+      <solicitud-cotizacion *ngFor="let solicitud of solicitudes" (solicitudClicked)="clickSolicitudCotizacion($event)"
+        [solicitud]="solicitud"></solicitud-cotizacion>
+
+    </div>
+  </div>
 </div>

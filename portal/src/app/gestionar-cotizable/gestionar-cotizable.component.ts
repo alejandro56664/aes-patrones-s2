@@ -65,7 +65,7 @@ export class GestionarCotizableComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.alertService.success('Su nuevo Bien ha sido registrado exitosamente', true);
+                    this.alertService.success('Su nuevo Bien/Servicio ha sido registrado exitosamente', true);
                     this.router.navigate(['/catalogo']);
                 },
                 error => {
@@ -78,7 +78,7 @@ export class GestionarCotizableComponent implements OnInit {
         if(!bien) bien = new Cotizable()
         return this.formBuilder.group({
             tipo: [bien.tipo || '', Validators.required],
-            nombre: [bien.nombre || '', Validators.required],
+            titulo: [bien.titulo || '', Validators.required],
             descripcion: [bien.descripcion || '', Validators.required],
             imagen: [bien.imagen || '', Validators.required],
             codigo: [bien.codigo || '', [Validators.required, Validators.minLength(6)]]
@@ -92,7 +92,7 @@ export class GestionarCotizableComponent implements OnInit {
                         .pipe(first())
                         .subscribe(
                             data => {
-                                this.alertService.success('El Bien ha sido eliminado exitosamente', true);
+                                this.alertService.success('El Bien/Servicio ha sido eliminado exitosamente', true);
                                 this.router.navigate(['/catalogo']);
                             },
                             error => {

@@ -1,15 +1,19 @@
-﻿<h2>Gestionar solicitud de Cotización</h2>
-<div  class="list-group-item list-group-item-action" (click)="verDetalle(event$)">
-  <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">{{solicitud.cotizable.nombre}}</h5>
-    <small>{{solicitud.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
+﻿<div class="row justify-content-md-center">
+  <div class="card card-body col col-lg-6">
+    <h2>Gestionar solicitud de Cotización</h2>
+    <div class="list-group-item list-group-item-action" (click)="verDetalle(event$)">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{solicitud.cotizable.nombre}}</h5>
+        <small>{{solicitud.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
+      </div>
+      <p class="mb-1">Descripción: {{solicitud.cotizable.descripcion}}</p>
+      <small>Codigo: {{solicitud.cotizable.codigo}}</small>
+    </div>
+    <div *ngIf="currentUser.tipo === 'proveedor'">
+      Aquí debería aparecer un componente que permita crear una cotización
+    </div>
+    <div *ngIf="currentUser.tipo === 'comprador'">
+      Aquí debería aparecer todas las cotizaciones que hicieron los proveedores
+    </div>
   </div>
-  <p class="mb-1">Descripción: {{solicitud.cotizable.descripcion}}</p>
-  <small>Codigo: {{solicitud.cotizable.codigo}}</small>
-</div>
-<div *ngIf="currentUser.tipo === 'proveedor'">
-  Aquí debería aparecer un componente que permita crear una cotización
-</div>
-<div *ngIf="currentUser.tipo === 'comprador'">
-  Aquí debería aparecer todas las cotizaciones que hicieron los proveedores
 </div>
