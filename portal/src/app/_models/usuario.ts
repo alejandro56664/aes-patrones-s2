@@ -5,6 +5,8 @@
     nombre: string;
     apellido: string;
     celular: string;
-    id_tipo_usuario: string;
+    tipo: string;
     token: string;
+    fecha_creacion: Date;
+    fecha_modificacion: Date;
 }

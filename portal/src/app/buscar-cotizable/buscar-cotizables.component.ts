@@ -57,7 +57,7 @@ export class BuscarCotizablesComponent implements OnInit {
     }
 
     onCotizableClick(evento) {
-        if(this.currentUser.id_tipo_usuario==='comprador'){
+        if(this.currentUser.tipo==='comprador'){
             this.loading = true;
             this.solicitudCotizacionService.register(this.currentUser.id, this.toSolicitudCotizacion(evento))
                 .pipe(first())

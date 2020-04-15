@@ -5,8 +5,8 @@
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label for="tipo">Tipo de Usuario</label>
-                    <select name="id_tipo_usuario" formControlName="id_tipo_usuario" class="form-control"
-                        [ngClass]="{ 'is-invalid': submitted && f.id_tipo_usuario.errors }">
+                    <select name="tipo" formControlName="tipo" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }">
                         <option value="comprador">Comprador</option>
                         <option value="proveedor">Proveedor</option>
                     </select>

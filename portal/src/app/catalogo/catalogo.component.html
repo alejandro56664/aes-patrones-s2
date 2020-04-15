@@ -7,7 +7,7 @@
    <p></p>
     <div class="card-deck">
       <cotizable *ngFor="let cotizable of cotizables" (cotizableClicked)="onCotizableClick($event)"
-        [cotizable]="cotizable" [tipoUsuario]="currentUser.id_tipo_usuario"></cotizable>
+        [cotizable]="cotizable" [tipoUsuario]="currentUser.tipo"></cotizable>
 
     </div>
     <p></p>

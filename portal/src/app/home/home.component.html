@@ -11,18 +11,18 @@
   <div class="card card-body col col-lg-6">
     <h3>Hola, {{currentUser.nombre}}!</h3>
     <p class="lead">Bienvenido a Cotiza Fácil la plataforma para realizar cotizaciones en internet</p>
-    <buscar-cotizables *ngIf="currentUser.id_tipo_usuario === 'comprador'" [currentUser]="currentUser">
+    <buscar-cotizables *ngIf="currentUser.tipo === 'comprador'" [currentUser]="currentUser">
     </buscar-cotizables>
     <hr class="">
     <p>A continuación te presentamos algunas opciones que pueden ser de tu interes.</p>
 
-    <div class="btn-group" role="group" aria-label="Basic example" *ngIf="currentUser.id_tipo_usuario === 'proveedor'">
+    <div class="btn-group" role="group" aria-label="Basic example" *ngIf="currentUser.tipo === 'proveedor'">
       <button type="button" class="btn btn-info" routerLink="/catalogo" routerLinkActive="active"> Mi Catalogo</button>
 
       <button type="button" class="btn btn-info" routerLink="/solicitud-cotizacion" routerLinkActive="active">Entregar
         Cotizaciones</button>
     </div>
-    <div class="btn-group" role="group" aria-label="Basic example" *ngIf="currentUser.id_tipo_usuario === 'comprador'">
+    <div class="btn-group" role="group" aria-label="Basic example" *ngIf="currentUser.tipo === 'comprador'">
       <button type="button" class="btn btn-info" routerLink="/solicitud-cotizacion" routerLinkActive="active">Mis
         Cotizaciones</button>
     </div>

@@ -7,4 +7,5 @@ export class SolicitudCotizacion {
   fechaCreacion: Date;
   cotizable: Cotizable;
   cotizaciones: Cotizacion[];
+
 }

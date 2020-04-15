@@ -5,5 +5,6 @@ export class Cotizacion {
   cantidad: number;
   precioTotal: number;
   precioUnidad: number;
+  id_usu_proveedor: string;
   
 }
