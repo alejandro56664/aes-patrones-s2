@@ -5,10 +5,9 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
-let cotizables = JSON.parse(localStorage.getItem('bienes')) || [];
+let cotizables = JSON.parse(localStorage.getItem('catalogo')) || [];
 let cotizaciones = JSON.parse(localStorage.getItem('cotizaciones')) || [];
 let solicitudes = JSON.parse(localStorage.getItem('solicitudes')) || [];
-
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -39,6 +38,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return registrarCotizable();
                 case url.endsWith('/catalogo') && method === 'GET':
                     return getCatalogo();
+                case url.match(/\/catalogo\/buscarporusuario\/\d+$/) && method === 'GET':
+                    console.log("Entro a buscar catalogo")
+                        return getCatalogoByUser();
                 case url.match(/\/catalogo\/\d+$/) && method === 'DELETE':
                     return deleteCotizable();
                 case url.match(/\/catalogo\/\d+$/) && method === 'GET':
@@ -137,6 +139,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function getCatalogo() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(cotizables);
+        }
+        function getCatalogoByUser() {
             if (!isLoggedIn()) return unauthorized();
             return ok(cotizables);
         }

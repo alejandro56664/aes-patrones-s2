@@ -18,11 +18,13 @@ const routes: Routes = [
 
     //proveedores
     { path: 'catalogo', component: CatalogoComponent, canActivate: [AuthGuard]},
+    { path: 'catalogo/buscarporusuario', component: CatalogoComponent, canActivate: [AuthGuard]},
     { path: 'catalogo/registrar', component: GestionarCotizableComponent, canActivate: [AuthGuard]},
     { path: 'catalogo/:idCotizable/gestionar', component: GestionarCotizableComponent, canActivate: [AuthGuard]},
 
     //común
     { path: 'solicitud-cotizacion', component: MisSolicitudesComponent, canActivate: [AuthGuard]},
+     { path: 'solicitud-cotizacion', component: MisSolicitudesComponent, canActivate: [AuthGuard]},
     { path: 'solicitud-cotizacion/:idSolicitud/gestionar', component: GestionarSolicitudCotizacionComponent, canActivate: [AuthGuard]},
 
     { path: 'login', component: LoginComponent },

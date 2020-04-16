@@ -1,7 +1,8 @@
 ﻿<div class="row justify-content-md-center">
     <div class="card card-body col col-lg-6">
 
-        <h2>{{(this.modoOperacion === 'registrar')?'Registrar un nuevo Bien/Servicio':'Modificar un Bien' / Servicio}}</h2>
+        <h2>{{(this.modoOperacion === 'registrar')?'Registrar un nuevo Bien/Servicio':'Modificar un Bien' / Servicio}}
+        </h2>
 
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
@@ -47,7 +48,8 @@
                 <input type="url" formControlName="imagen" class="form-control" [(ngModel)]="imagen"
                     [ngClass]="{ 'is-invalid': submitted && f.imagen.errors }" />
                 <div *ngIf="submitted && f.imagen.errors" class="invalid-feedback">
-                    <div *ngIf="f.imagen.errors.required">Necesitas poner una URL de imagen para tu bien o servicio</div>
+                    <div *ngIf="f.imagen.errors.required">Necesitas poner una URL de imagen para tu bien o servicio
+                    </div>
                 </div>
                 <img [src]="imagen == '' ? 'assets/noimage.png' : imagen" class="card-img-top ">
             </div>
@@ -64,17 +66,17 @@
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Actualizar
                 </button>
+                <button [disabled]="loading" class="btn btn-danger  " (click)="onEliminarClick()"
+                    *ngIf="modoOperacion==='gestionar'">
+                    Eliminar
+                </button>
+                <a routerLink="/catalogo/buscarporusuario" class="btn btn-link">Cancelar</a>
 
-                <a routerLink="/catalogo" class="btn btn-link">Cancelar</a>
             </div>
+
 
         </form>
 
     </div>
-    <div class="col-sm-6 offset-sm-3">
-        <button [disabled]="loading" class="btn btn-danger btn-sm " (click)="onEliminarClick()"
-            *ngIf="modoOperacion==='gestionar'">
-            Eliminar
-        </button>
-    </div>
+
 </div>

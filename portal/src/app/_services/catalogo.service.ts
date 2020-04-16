@@ -17,7 +17,7 @@ export class CatalogoService {
         return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo`);
     }
     getAllbyUsuario(idUsuario) {
-        return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo/${idUsuario}`);
+        return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo/buscarporusuario/${idUsuario}`);
     }
 
     register(cotizable: Cotizable) {

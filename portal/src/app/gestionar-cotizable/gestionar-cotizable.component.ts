@@ -3,8 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first, switchMap } from 'rxjs/operators';
 
-import { AlertService, CatalogoService } from '@/_services';
-import { Cotizable } from '@/_models'
+import { AlertService, CatalogoService, AuthenticationService } from '@/_services';
+import { Cotizable, Usuario } from '@/_models'
 import { Observable } from 'rxjs';
 
 @Component({ selector: 'gestionar-cotizable', templateUrl: 'gestionar-cotizable.component.html' })
@@ -13,7 +13,7 @@ export class GestionarCotizableComponent implements OnInit {
     loading = false;
     submitted = false;
     modoOperacion: string;//modo registrar, modo gestionar
-    
+    currentUser: Usuario;
     cotizable$: Observable<Cotizable>;
     idCotizable: number;
     constructor(
@@ -22,10 +22,13 @@ export class GestionarCotizableComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute,
         private catalogoService: CatalogoService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private authenticationService: AuthenticationService
     ) {}
 
     ngOnInit() {
+        this.currentUser = this.authenticationService.currentUserValue;
+
         // si solo vamos a crear un nuevo Bien
         let url = this.router.url
         if(url.endsWith('registrar')){
@@ -65,8 +68,8 @@ export class GestionarCotizableComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.alertService.success('Su nuevo Bien/Servicio ha sido registrado exitosamente', true);
-                    this.router.navigate(['/catalogo']);
+                    this.alertService.success('Su Bien/Servicio ha sido registrado exitosamente', true);
+                    this.router.navigate(['/catalogo/buscarporusuario'+this.currentUser ]);
                 },
                 error => {
                     this.alertService.error(error);
@@ -81,7 +84,8 @@ export class GestionarCotizableComponent implements OnInit {
             titulo: [bien.titulo || '', Validators.required],
             descripcion: [bien.descripcion || '', Validators.required],
             imagen: [bien.imagen || '', Validators.required],
-            codigo: [bien.codigo || '', [Validators.required, Validators.minLength(6)]]
+            codigo: [bien.codigo || '', [Validators.required, Validators.minLength(6)]],
+            id_usu_proveedor: this.currentUser.id
         });
     }
 
@@ -93,7 +97,7 @@ export class GestionarCotizableComponent implements OnInit {
                         .subscribe(
                             data => {
                                 this.alertService.success('El Bien/Servicio ha sido eliminado exitosamente', true);
-                                this.router.navigate(['/catalogo']);
+                                this.router.navigate(['/catalogo/buscarporusuario/'+this.currentUser ]);
                             },
                             error => {
                                 this.alertService.error(error);
