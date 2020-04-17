@@ -11,7 +11,7 @@ export class CotizableComponent implements OnInit {
     @Output() cotizableClicked: EventEmitter<any> = new EventEmitter();
 
 
-    cantidad: number;
+    cantidad: number = 1;
 
     constructor() {
     }

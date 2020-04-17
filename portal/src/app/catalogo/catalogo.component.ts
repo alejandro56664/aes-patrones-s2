@@ -16,15 +16,11 @@ export class CatalogoComponent implements OnInit {
 
     ngOnInit() {
         this.currentUser = this.authenticationService.currentUserValue;
-        this.loadAllCotizableByUser(this.currentUser.id);
+        this.loadAllCotizableByUsuario(this.currentUser.id);
     }
 
-    private loadAllCotizables() {
-        this.catalogoService.getAll()
-            .subscribe(cotizables => this.cotizables = cotizables);
-    }
-    private loadAllCotizableByUser(idUsuario) {
-        this.catalogoService.getAllbyUsuario(idUsuario)
+    private loadAllCotizableByUsuario(idUsuario) {
+        this.catalogoService.getAllByUsuario(idUsuario)
             .subscribe(cotizables => this.cotizables = cotizables);
     }
 
