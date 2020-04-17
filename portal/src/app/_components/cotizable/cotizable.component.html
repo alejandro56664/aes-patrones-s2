@@ -2,9 +2,9 @@
   <img class="card-img-top"  [src]="cotizable.imagen"  alt="Sin imagen">
   <div class="card-body">
     <h5 class="card-title">{{cotizable.titulo | uppercase }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Codigo: {{cotizable.codigo}}</h6>
-    <p class="card-text">{{cotizable.descripcion | slice:0:80}}</p>
-    
+    <h6 class="card-text">{{cotizable.descripcion | slice:0:80}}</h6>
+    <p class="card-subtitle mb-2 text-muted">Codigo: {{cotizable.codigo}}</p>
+    <small>Fecha Creación: {{cotizable.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
     <div class="input-group mb-3" *ngIf="tipoUsuario==='comprador'">
       <input  class="form-control"  min="1" name="quantity" value="1" type="number" (change)="onCantidadChange($event)" >
       <div class="input-group-append">

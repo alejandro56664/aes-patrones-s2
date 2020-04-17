@@ -60,6 +60,7 @@ CREATE TABLE solicitud_cotizacion(
     fecha_creacion timestamp default current_timestamp,
     fecha_modificacion timestamp
     );
+ALTER TABLE solicitud_cotizacion ADD COLUMN valor varchar (180);
 
 CREATE TABLE respuesta_cotizacion(
     id_cotizacion int not null, CONSTRAINT FOREIGN key (id_cotizacion) REFERENCES solicitud_cotizacion(id),

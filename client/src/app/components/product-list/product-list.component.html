@@ -8,19 +8,20 @@
         </div>
 
         <div class="card-body">
-
-
             <img src="{{product.url_imagen}}" class="img-fluid">
-            <h3>Catalogo : {{product.id_catalogo}}</h3>
+            <h6>Catalogo : <span *ngIf="product.id_catalogo==1">Servicio</span>
+                <span *ngIf="product.id_catalogo==2">Bienes</span>
+            </h6>
+
 
             <p>Descripción: {{product.descripcion}}</p>
 
-            <a *ngIf="id_tipo_usuario==2" [routerLink]="['/products/edit/', product.id]"
-                class="btn btn-info btn-block">
+            <a *ngIf="id_tipo_usuario==2" [routerLink]="['/products/edit/', product.id]" class="btn btn-info btn-block">
                 Editar
             </a>
 
-            <a *ngIf="id_tipo_usuario==1" [routerLink]="['/cotizaciones/add/', product.id, user.id]" class="btn btn-info btn-block">
+            <a *ngIf="id_tipo_usuario==1" [routerLink]="['/cotizaciones/add/', product.id, user.id]"
+                class="btn btn-info btn-block">
                 Cotizar
             </a>
         </div>

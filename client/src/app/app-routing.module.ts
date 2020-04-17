@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/users/login',
-    canDeactivate: [AuthGuard],
+    canActivate: [AuthGuard],
     pathMatch: 'full'
   }, 
   {
@@ -50,6 +50,7 @@ const routes: Routes = [
   {
     path: 'users/add',
     component: UserFormComponent
+    
   },
   {
     path: 'users/login',
