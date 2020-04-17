@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { ChartsModule } from 'ng2-charts';
+
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 
@@ -30,6 +32,7 @@ import { SolicitudCotizacionComponent } from './_components/solicitud-cotizacion
 import { MisSolicitudesComponent } from './solicitudes';
 import { GestionarSolicitudCotizacionComponent } from './gestionar-solicitud-cotizacion';
 import { FooterComponent } from './_components/footer/footer.component';
+import { BarChartComponent } from './_components/graficobarras/graficobarras-component';
 
 
 
@@ -39,7 +42,8 @@ import { FooterComponent } from './_components/footer/footer.component';
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        appRoutingModule,
+        ChartsModule
     ],
     declarations: [
         AppComponent,
@@ -48,6 +52,7 @@ import { FooterComponent } from './_components/footer/footer.component';
         RegistrarUsuarioComponent,
         AlertComponent,
         FooterComponent,
+        BarChartComponent,
 
         // COmponentes propios de la aplicación (dominio)
         //Bien
