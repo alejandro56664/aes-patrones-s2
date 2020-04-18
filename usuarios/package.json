@@ -3,8 +3,7 @@
     "version": "1.0.0",
     "description": "Servicio que permite la autenticación y el registro de usuarios",
     "license": "MIT",
-    "repository": {
-    },
+    "repository": {},
     "scripts": {
         "start": "node ./server.js",
         "start-dev": "nodemon ./server.js"
