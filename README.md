@@ -1,6 +1,9 @@
 # Cotiza Fácil
 
-La aplicación Cotiza Fácil fue desarrollada para ofrecer a compradores la oportunidad de cotizar productos con distintos proveedores y a su vez permitirles a los proveedores la integración a través de servicios o la gestión de su catálogo y respuesta a cotizaciones directamente desde la plataforma.  
+La aplicación Cotiza Fácil fue desarrollada para ofrecer a compradores la oportunidad de cotizar productos con distintos proveedores y a su vez permitirles a los proveedores la integración a través de servicios o la gestión de su catálogo y respuesta a cotizaciones directamente desde la plataforma.
+
+ Mas abajo se presentan la arquitectura seleccionada con un mayor nivel de detalle necesario para su implementación utilizando vistas 4+1.
+
 
 ## Requerimientos Funcionales Establecidos
 |Código | Descripción |
