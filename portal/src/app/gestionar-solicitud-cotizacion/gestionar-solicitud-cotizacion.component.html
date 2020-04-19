@@ -8,29 +8,33 @@
       <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">{{solicitud.cotizable.titulo}}</h5>
         <img class="w-25 card-img-top" [src]="solicitud.cotizable.imagen" alt="Sin imagen">
-        <app-bar class="d-flex w-70 "></app-bar>
+     
+          <app-bar [idSolicitud]="idSolicitud" class="d-flex w-70 ">
+          </app-bar>
+
+
       </div>
-      
+
       <p class="mb-1">Descripción: {{solicitud.cotizable.descripcion}}</p>
       <p class="mb-1">Codigo: {{solicitud.cotizable.codigo}}</p>
       <small>{{solicitud.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
-      
+
     </div>
-  
+
     <p></p>
     <div *ngIf="currentUser.tipo === 'proveedor'">
       <crear-cotizacion [idSolicitud]="idSolicitud"></crear-cotizacion>
     </div>
     <p></p>
     <p>Estos son las ofertas que se han hecho al articulo:</p>
-    
+
     <div *ngIf="solicitud.cotizaciones.length>0" class="list-group">
       <cotizacion *ngFor="let cotizacion of solicitud.cotizaciones" (cotizacionClicked)="clickCotizacion($event)"
         [cotizacion]="cotizacion"></cotizacion>
 
     </div>
     <div *ngIf="solicitud.cotizaciones.length==0" class="list-group">
-     <p>En el momento no hay ofertas para este producto</p>
+      <p>En el momento no hay ofertas para este producto</p>
 
     </div>
 

@@ -1,13 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
-
+import { SolicitudCotizacion, Usuario } from '@/_models';
+import { SolicitudCotizacionService } from '@/_services';
+import { AuthenticationService } from '@/_services';
+import { ParamMap, ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { IDataChart } from './dataChart';
 @Component({
   selector: 'app-bar',
-  templateUrl: './graficobarras-component.html' 
+  templateUrl: './graficobarras-component.html'
 })
+
 export class BarChartComponent implements OnInit {
+  @Input() idSolicitud: number;
+  solicitudes: SolicitudCotizacion[] = [];
+
+  currentUser: Usuario;
+  solicitud: SolicitudCotizacion;
+  resultData: any[] =[];
+  loaded = false;
+  
+
   public barChartOptions: ChartOptions = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
@@ -25,12 +40,36 @@ export class BarChartComponent implements OnInit {
   public barChartPlugins = [pluginDataLabels];
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' }
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Titulo' }
   ];
 
-  constructor() { }
+  constructor(private solicitudCotizacionService: SolicitudCotizacionService,
+    private route: ActivatedRoute,
+    private solicitudCotizacionServicio: SolicitudCotizacionService,
+    private authenticationService: AuthenticationService
+  ) {
+    this.currentUser = this.authenticationService.currentUserValue;
+
+  }
 
   ngOnInit() {
+
+    console.log("Entro:  " + this.idSolicitud)
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        this.idSolicitud = +params.get('idSolicitud')
+        return this.solicitudCotizacionServicio.get(this.currentUser.id, this.idSolicitud)
+      })
+    ).subscribe(s => {
+  
+      this.resultData = s;
+      this.barChartLabels = this.resultData.map(item => item.label);
+      this.barChartData = this.resultData.map(item => item.data);
+      this.loaded = true;
+
+    }
+    )
+
   }
 
   // events
@@ -54,4 +93,10 @@ export class BarChartComponent implements OnInit {
       40];
     this.barChartData[0].data = data;
   }
+
+  private traerMisSolicitudesDeCotizacion(idUsuario: number) {
+    this.solicitudCotizacionService.getAll(idUsuario)
+      .subscribe(solicitudes => this.solicitudes = solicitudes);
+  }
+
 }
