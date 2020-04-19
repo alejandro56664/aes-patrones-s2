@@ -42,135 +42,89 @@ La aplicación Cotiza Fácil fue desarrollada para ofrecer a compradores la opor
 ### Patrón nuclear
   Publicador/Suscriptor
   
+    
+  ![Test Image 1](diagramas/Publish-Suscriber.png)
+  
+  
 ### Patrones complementarios
-  Capas
+  Capas:
+  
+  
+  ![Test Image 1](diagramas/Patron-Capas.png)
+  
+  
   Cliente/Servidor
+  
   Patrones de Mensajería EAI 
-    Return address 
-    Scatter-Gather 
-    Canonical Data Model
+   Return address 
+    ![Test Image 1](diagramas/ReturnAddress.png)
+    
+   Scatter-Gather 
+    
+   ![Test Image 1](diagramas/Scatter-Gather.png)
+     	
+   Canonical Data Model
+    
+   ![Test Image 1](diagramas/Modelo-canonico-mensajes.png)
+    
 
 
-### Prerequisites
+### Tecnologias usadas
+NodeJS
+Angular
+MongoDB
 
-What things you need to install the software and how to install them
 
-```
-Give examples
-```
+## Vistas 4+1
+### Vista Lògica
 
-### Installing
+  ![Test Image 1](diagramas/Cotizador-Vista-logica.png)
 
-A step by step series of examples that tell you how to get a development env running
+### Vista Desarrollo
 
-Say what the step will be
 
-```
-Give the example
-```
+  ![Test Image 1](diagramas/Cotizador-Vista-Desarrollo.png)
+ 	
+### Vista Procesos
 
-And repeat
+  ![Test Image 1](diagramas/Cotizador-Vista-Procesos.png)
 
-```
-until finished
-```
 
-End with an example of getting some data out of the system or using it for a little demo
+### Vista 4+1
 
-## Running the tests
+  ![Test Image 1](diagramas/Cotizador-Arquitectura-General.png)
+    
+### Vista 4+1 Arquitectura alterna    
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+  ![Test Image 1](diagramas/Cotizador-Arquitectura-Alterna.png)
 
 
 
 
-# Appaes
-Para ejecutar se debe ejecutar el backend
-dentro de la carpeta server ejecutar:
-npm run dev
-Para ejecutar frontend dentro de la carpeta client ejecutar:
-ng serve
 
-En una BD mysql ejecutar el archivo que hay en la carpeta base de datos en el esquema de base de datos preferido.
+### Referencias
 
+    K. H. K. H. Frank Buschmann, «Publish and Subscribe,» de PATTERN-ORIENTED SOFTWARE ARCHITECTURE A Pattern Language for Distributed Computing, West Sussex, England, John Wiley & Sons Ltd, 2007, pp. 234-236.​
 
-# Appaes
+​
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+    B. W. Gregor Hohpe, «Enterprise Integration Patterns,» [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/ReturnAddress.html. [Último acceso: 05 04 2020].​
 
-## Development server
+​
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    B. W. Gregor Hohpe, «Enterprise Integration Patterns,» [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html. [Último acceso: 05 04 2020].​
 
-## Code scaffolding
+​
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    «Canonical Data Model,» Enterprise Integration Patterns, [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataModel.html. [Último acceso: 17 04 2020].​
 
-## Build
+​
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+    C. Richardson, «Scale Cube,» [En línea]. Available: https://microservices.io/articles/scalecube.html. [Último acceso: 17 04 2020].​
 
-## Running unit tests
+​
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    Google, «Set up High-Availability Kubernetes Masters,» Google, [En línea]. Available: https://kubernetes.io/docs/tasks/administer-cluster/highly-available-master/. [Último acceso: 17 04 2020].
 
 
 
