@@ -32,7 +32,8 @@ import { SolicitudCotizacionComponent } from './_components/solicitud-cotizacion
 import { MisSolicitudesComponent } from './solicitudes';
 import { GestionarSolicitudCotizacionComponent } from './gestionar-solicitud-cotizacion';
 import { FooterComponent } from './_components/footer/footer.component';
-import { BarChartComponent } from './_components/graficobarras/graficobarras-component';
+import { GraficoBarrasComponent } from './_components/grafico-barras/grafico-barras.component';
+import { CatalogoConfiguracionComponent } from './catalogo-configuracion';
 
 
 
@@ -52,7 +53,7 @@ import { BarChartComponent } from './_components/graficobarras/graficobarras-com
         RegistrarUsuarioComponent,
         AlertComponent,
         FooterComponent,
-        BarChartComponent,
+        GraficoBarrasComponent,
 
         // COmponentes propios de la aplicación (dominio)
         //Bien
@@ -60,6 +61,7 @@ import { BarChartComponent } from './_components/graficobarras/graficobarras-com
         CatalogoComponent,
         GestionarCotizableComponent,
         BuscarCotizablesComponent,
+        CatalogoConfiguracionComponent,
 
         //Cotizacion
         CotizacionComponent,
@@ -77,7 +79,7 @@ import { BarChartComponent } from './_components/graficobarras/graficobarras-com
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
-        fakeBackendProvider
+        //fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

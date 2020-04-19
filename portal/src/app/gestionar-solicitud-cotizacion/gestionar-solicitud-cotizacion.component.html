@@ -1,40 +1,46 @@
 ﻿<div class="row justify-content-md-center">
   <div class="card card-body col col-lg-9">
     <h4>Gestionar solicitud de Cotización</h4>
-
     <p>A continuación se presenta el articulo a Cotizar</p>
 
-    <div class="list-group-item list-group-item-action" (click)="verDetalle(event$)">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{{solicitud.cotizable.titulo}}</h5>
-        <img class="w-25 card-img-top" [src]="solicitud.cotizable.imagen" alt="Sin imagen">
-        <app-bar class="d-flex w-70 "></app-bar>
+    <div class="card mb-3" >
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img class="card-img-top" [src]="solicitud.cotizable.imagen" alt="Sin imagen">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{solicitud.cotizable.titulo}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Código: {{solicitud.cotizable.codigo}}</h6>
+            <p class="card-text"> {{solicitud.cotizable.descripcion}} </p>
+            <small class="text-muted">Fecha Creación: {{solicitud.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
+          </div>
+        
+          
+        </div>
+
       </div>
-      
-      <p class="mb-1">Descripción: {{solicitud.cotizable.descripcion}}</p>
-      <p class="mb-1">Codigo: {{solicitud.cotizable.codigo}}</p>
-      <small>{{solicitud.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
-      
     </div>
-  
-    <p></p>
+
     <div *ngIf="currentUser.tipo === 'proveedor'">
       <crear-cotizacion [idSolicitud]="idSolicitud"></crear-cotizacion>
     </div>
-    <p></p>
-    <p>Estos son las ofertas que se han hecho al articulo:</p>
+
+    <div  *ngIf="currentUser.tipo === 'comprador'">
+      <p *ngIf="solicitud.cotizaciones.length==0">En el momento no hay ofertas para este producto</p>
+      <p *ngIf="solicitud.cotizaciones.length>0">Estos son las ofertas que se han hecho al articulo (solo se muestran las {{limiteParaMostrar}} mejores):</p>
+      <div class="card-body" *ngIf="solicitud.cotizaciones.length>0">
+        <div>
+          <h6 class="card-subtitle mb-2 text-muted">Mejores ofertas</h6>
+          <grafico-barras [proveedores]="proveedores" [ofertas]="ofertas" class="d-flex w-70 "></grafico-barras>
+        </div>
+      </div>
+
+    </div>
     
-    <div *ngIf="solicitud.cotizaciones.length>0" class="list-group">
-      <cotizacion *ngFor="let cotizacion of solicitud.cotizaciones" (cotizacionClicked)="clickCotizacion($event)"
+    <div class="list-group">
+      <cotizacion *ngFor="let cotizacion of cotizacionesParaMostrar" (cotizacionClicked)="clickCotizacion()"
         [cotizacion]="cotizacion"></cotizacion>
-
     </div>
-    <div *ngIf="solicitud.cotizaciones.length==0" class="list-group">
-     <p>En el momento no hay ofertas para este producto</p>
-
-    </div>
-
-
-
   </div>
 </div>

@@ -16,6 +16,7 @@ export class GestionarCotizableComponent implements OnInit {
     currentUser: Usuario;
     cotizable$: Observable<Cotizable>;
     idCotizable: number;
+    imagen: string;
     constructor(
         
         private formBuilder: FormBuilder,
@@ -64,12 +65,12 @@ export class GestionarCotizableComponent implements OnInit {
         }
 
         this.loading = true;
-        this.catalogoService.register(this.registerForm.value)
+        this.catalogoService.register(this.currentUser.id, this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {
                     this.alertService.success('Su Bien/Servicio ha sido registrado exitosamente', true);
-                    this.router.navigate(['/catalogo/buscarporusuario'+this.currentUser ]);
+                    this.router.navigate(['/catalogo/'+this.currentUser ]);
                 },
                 error => {
                     this.alertService.error(error);
@@ -92,7 +93,7 @@ export class GestionarCotizableComponent implements OnInit {
     onEliminarClick(){
         console.log('click en eliminar')
         this.loading = true;
-        this.catalogoService.delete(this.idCotizable)
+        this.catalogoService.delete(this.currentUser.id, this.idCotizable)
                         .pipe(first())
                         .subscribe(
                             data => {

@@ -1,9 +1,13 @@
 ﻿<div class="row justify-content-md-center">
-  <div class="card card-body col col-lg-9">
+  <div class="card card-body col col-lg-12">
     <h2>Mi Catalogo</h2>
-    <button type="button" class="btn btn-info" routerLink="/catalogo/registrar" routerLinkActive="active"> Añadir
-      Bien/Servicio</button>
-   <!-- <a href="/catalogo/registrar">Nuevo Bien/Servicio</a>-->
+    <p>En esta sección puedes agregar productos y servicios a tu catalogo (si es gestionado por nosotros) o puedes configurar un catalago externo, si ya cuentas con uno.</p>
+    <div class="btn-group" role="group" aria-label="Basic example">
+
+      <button type="button" class="{{configuracion.tipo === 'interno'?'btn btn-info':'btn btn-info disabled'}}" (click)="onAnadirClick()"> 
+        Añadir bien/servicio</button>
+      <button type="button" class="btn btn-info" (click)="onConfigurarClick()">Configurar catalogo externo</button>
+    </div>
    <p></p>
     <div class="card-deck">
       <cotizable *ngFor="let cotizable of cotizables" (cotizableClicked)="onCotizableClick($event)"

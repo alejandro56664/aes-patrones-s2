@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Usuario, Cotizable } from '@/_models';
 import { Observable } from 'rxjs';
+import { ConfiguracionCatalogo } from '@/_models/catalogo-configuracion';
 
 @Injectable({ providedIn: 'root' })
 export class CatalogoService {
@@ -10,25 +11,30 @@ export class CatalogoService {
     constructor(private http: HttpClient) { }
 
     get(id: number): Observable<Cotizable> {
-        return this.http.get<Cotizable>(`${config.apiUrl}/catalogo/${id}`);
+        return this.http.get<Cotizable>(`${config.apiUrl}/catalogo/item/${id}`);
     }
 
-    getAll() {
-        return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo`);
-    }
-    getAllByUsuario(idUsuario: number) {
-        return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo/usuario/${idUsuario}`);
+    getAll(idCatalogo: number) {
+        return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo/${idCatalogo}`);
     }
 
-    register(cotizable: Cotizable) {
-        return this.http.post(`${config.apiUrl}/catalogo/registrar`, cotizable);
+    register(idCatalogo: number, cotizable: Cotizable) {
+        return this.http.post(`${config.apiUrl}/catalogo/${idCatalogo}/registrar`, cotizable);
+    }
+
+    configure(idCatalogo: number, configuracion: ConfiguracionCatalogo) {
+        return this.http.post(`${config.apiUrl}/catalogo/${idCatalogo}/configuracion`, configuracion);
+    }
+
+    getConfig(idCatalogo: number) {
+        return this.http.get<ConfiguracionCatalogo>(`${config.apiUrl}/catalogo/${idCatalogo}/configuracion`);
     }
 
     search(frase: string): Observable<Cotizable[]> {
         return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo/buscar?=${frase}`);
     }
 
-    delete(id: number) {
-        return this.http.delete(`${config.apiUrl}/catalogo/${id}`);
+    delete(idCatalogo: number, id: number) {
+        return this.http.delete(`${config.apiUrl}/catalogo/${idCatalogo}/item/${id}`);
     }
 }

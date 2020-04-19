@@ -11,6 +11,7 @@ import { GestionarCotizableComponent } from './gestionar-cotizable';
 import { MisSolicitudesComponent } from './solicitudes';
 //import { BuscarCotizablesComponent } from './buscar-cotizable';
 import { GestionarSolicitudCotizacionComponent } from './gestionar-solicitud-cotizacion';
+import { CatalogoConfiguracionComponent } from './catalogo-configuracion';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'catalogo', component: CatalogoComponent, canActivate: [AuthGuard]},
     { path: 'catalogo/buscarporusuario', component: CatalogoComponent, canActivate: [AuthGuard]},
     { path: 'catalogo/registrar', component: GestionarCotizableComponent, canActivate: [AuthGuard]},
+    { path: 'catalogo/configurar', component: CatalogoConfiguracionComponent, canActivate: [AuthGuard]},
     { path: 'catalogo/:idCotizable/gestionar', component: GestionarCotizableComponent, canActivate: [AuthGuard]},
 
     //común

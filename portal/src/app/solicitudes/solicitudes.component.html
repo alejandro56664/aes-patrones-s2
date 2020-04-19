@@ -1,14 +1,13 @@
 ﻿<div class="row justify-content-md-center">
-  <div class="card card-body col col-lg-9">
+  <div class="card card-body col col-lg-12">
     <h4>Mis Solicitudes de Cotización</h4>
     <p>Articulos disponibles para cotizar:</p>
-
-    <div *ngIf="solicitudes.length>0" class="">
+    <div *ngIf="solicitudes.length>0" class="card-deck">
       <solicitud-cotizacion *ngFor="let solicitud of solicitudes" (solicitudClicked)="clickSolicitudCotizacion($event)"
         [solicitud]="solicitud"></solicitud-cotizacion>
 
     </div>
-    <div *ngIf="solicitudes.length==0" class="list-group">
+    <div *ngIf="solicitudes.length==0" class="card-deck">
       <p>En el momento no hay solicitudes de cotizacion</p>
 
     </div>

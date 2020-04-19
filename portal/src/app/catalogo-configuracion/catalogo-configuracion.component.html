@@ -1,0 +1,51 @@
+﻿<div class="row justify-content-md-center">
+    <div class="card card-body col col-lg-6">
+
+        <h2>Configuración catálogo</h2>
+        <p>Aquí puedes configurar tu catalogo. Si deseas que gestionemos el catálogo por ti, selecciona tipo interno. Si por el contrario ya tienes un catálogo y deseas integrarte con nosotros, ten encuenta las indicaciones <a href="https://github.com/alejandro56664/aes-patrones-s2" target="_blank">aquí</a></p>
+        <form [formGroup]="configuracionForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="tipo">Tipo</label>
+                <select name="tipo" formControlName="tipo" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.tipo.errors }">
+                    <option value="interno">Interno</option>
+                    <option value="externo">Externo</option>
+                </select>
+
+                <div *ngIf="submitted && f.tipo.errors" class="invalid-feedback">
+                    <div *ngIf="f.tipo.errors.required">El Tipo es requerido</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="url_buscar">Url Buscar</label>
+                <input type="text" formControlName="url_buscar" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.url_buscar.errors }" />
+                <div *ngIf="submitted && f.url_buscar.errors" class="invalid-feedback">
+                    <div *ngIf="f.url_buscar.errors.required">La descripción es requerida</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="url_cotizar">Url Cotizar</label>
+                <input type="text" formControlName="url_cotizar" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.url_cotizar.errors }" />
+                <div *ngIf="submitted && f.url_cotizar.errors" class="invalid-feedback">
+                    <div *ngIf="f.url_cotizar.errors.required">El Código es requerido</div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Guardar
+                </button>
+                <a routerLink="/catalogo" class="btn btn-link">Cancelar</a>
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>

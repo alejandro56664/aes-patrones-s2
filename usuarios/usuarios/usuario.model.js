@@ -2,11 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    username: { type: String, unique: true, required: true },
+    email: { type: String, unique: true, required: true },
     hash: { type: String, required: true },
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    createdDate: { type: Date, default: Date.now }
+    nombre: { type: String, required: true },
+    apellido: { type: String, required: true },
+    celular: { type: String, required: true },
+    tipo: { type: String, required: true },
+    fecha_creacion: { type: Date, default: Date.now },
+    fecha_modificacion: { type: Date, default: Date.now }
+
+   // id: number;
+   // token: string;
+
 });
 
 schema.set('toJSON', { virtuals: true });

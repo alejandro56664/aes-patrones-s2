@@ -6,7 +6,7 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
 let cotizables = JSON.parse(localStorage.getItem('catalogo')) || [];
-let cotizaciones = JSON.parse(localStorage.getItem('cotizaciones')) || [];
+let configuracion = JSON.parse(localStorage.getItem('configuracion')) || {tipo: 'interno', url_buscar: '',  url_cotizar: ''};
 let solicitudes = JSON.parse(localStorage.getItem('solicitudes')) || [];
 
 @Injectable()
@@ -34,16 +34,21 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
                 //catalogo
                 //--------------------------------------------------------
+                case url.endsWith('/configuracion') && method === 'POST':
+                    return actualizarConfiguracion();
+                case url.endsWith('/configuracion') && method === 'GET':
+                    return getConfiguracion();
+
                 case url.endsWith('/catalogo/registrar') && method === 'POST':
                     return registrarCotizable();
                 case url.endsWith('/catalogo') && method === 'GET':
                     return getCatalogo();
-                case url.match(/\/catalogo\/buscarporusuario\/\d+$/) && method === 'GET':
+                case url.match(/\/catalogo\/\d+$/) && method === 'GET':
                     console.log("Entro a buscar catalogo")
                         return getCatalogoByUser();
-                case url.match(/\/catalogo\/\d+$/) && method === 'DELETE':
+                case url.match(/\/item\/\d+$/) && method === 'DELETE':
                     return deleteCotizable();
-                case url.match(/\/catalogo\/\d+$/) && method === 'GET':
+                case url.match(/\/item\/\d+$/) && method === 'GET':
                     return getCotizable();
                 case url.match(/\/catalogo\/buscar\?=\w+$/) && method === 'GET':
                     return getCatalogo();
@@ -153,6 +158,20 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             cotizables = cotizables.filter(x => x.id !== idFromUrl(1));
             localStorage.setItem('catalogo', JSON.stringify(cotizables));
             return ok();
+        }
+
+        function actualizarConfiguracion() {
+            if (!isLoggedIn()) return unauthorized();
+
+            configuracion = body
+            localStorage.setItem('configuracion', JSON.stringify(configuracion));
+
+            return ok();
+        }
+
+        function getConfiguracion() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(configuracion);
         }
 
         //-----------------------------------------------------------------

@@ -13,22 +13,26 @@
 
     <p class="lead">Bienvenido a Cotiza Fácil la plataforma para realizar cotizaciones en internet</p>
     <p>A continuación te presentamos algunas opciones que pueden ser de tu interes.</p>
-    <div class="btn-group btn-sm" role="group" aria-label="Basic example" *ngIf="currentUser.tipo === 'comprador'">
-      <button type="button" class="btn btn-info" routerLink="/solicitud-cotizacion" routerLinkActive="active">Mis
-        Cotizaciones</button>
-    </div>
-    <p></p>
-    <p>Digita el producto que quieres:</p>
-    <buscar-cotizables *ngIf="currentUser.tipo === 'comprador'" [currentUser]="currentUser">
-    </buscar-cotizables>
-    <hr class="">
-   
+    <p>
+      <button *ngIf="currentUser.tipo === 'comprador'" type="button" class="btn btn-outline-info" routerLink="/solicitud-cotizacion" routerLinkActive="active">
+        Mis Cotizaciones</button>
+    </p>
     <div class="btn-group" role="group" aria-label="Basic example" *ngIf="currentUser.tipo === 'proveedor'">
-      <button type="button" class="btn btn-info btn-sm" routerLink="/catalogo/buscarporusuario" routerLinkActive="active"> Mi Catalogo</button>
+      <button type="button" class="btn btn-info btn-sm" routerLink="/catalogo" routerLinkActive="active"> Mi Catalogo</button>
 
       <button type="button" class="btn btn-info btn-sm" routerLink="/solicitud-cotizacion" routerLinkActive="active">Entregar
         Cotizaciones</button>
     </div>
+
+    <p></p>
+    <div *ngIf="currentUser.tipo === 'comprador'" >
+      <p>Digita el producto que quieres:</p>
+      <buscar-cotizables [currentUser]="currentUser">
+      </buscar-cotizables>
+    </div>
+ 
+    <hr class="">
+
 
     <div class="container">
     </div>

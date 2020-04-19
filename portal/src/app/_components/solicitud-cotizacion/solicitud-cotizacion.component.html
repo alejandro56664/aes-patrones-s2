@@ -1,14 +1,10 @@
-﻿<div  class="list-group-item list-group-item-action" (click)="verDetalle(event$)">
-  <div class="d-flex w-100 justify-content-between">
-    <h5 class="mb-1">{{solicitud.cotizable.titulo}}</h5>
-    <img class="w-25 card-img-top"  [src]="solicitud.cotizable.imagen"  alt="Sin imagen">
-    
-  </div>
-  <h6 class="mb-1">Descripción: {{solicitud.cotizable.descripcion}}</h6>
-  
-  <p>Código: {{solicitud.cotizable.codigo}}</p>
-  <small>Fecha Creación: {{solicitud.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
-
-  
+﻿<div class="card list-group-item-action" style="width: 18rem;" (click)="verDetalle()">
+  <img class="card-img-top" [src]="solicitud.cotizable.imagen"  alt="Sin imagen">
+  <div class="card-body">
+    <h5 class="card-title">{{solicitud.cotizable.titulo}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Código: {{solicitud.cotizable.codigo}}</h6>
+    <p class="card-text"> {{solicitud.cotizable.descripcion}} </p>
+  <small class="text-muted">Fecha Creación: {{solicitud.fechaCreacion | date: 'dd/MM/yyyy'}}</small>
+ </div>
 </div>
 <p></p>

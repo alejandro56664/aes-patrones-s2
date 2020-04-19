@@ -4,15 +4,15 @@
     <h5 class="card-title">{{cotizable.titulo | uppercase }}</h5>
     <h6 class="card-text">{{cotizable.descripcion | slice:0:80}}</h6>
     <p class="card-subtitle mb-2 text-muted">Codigo: {{cotizable.codigo}}</p>
-    <small>Cantidad</small>
+    
     <div class="input-group mb-3" *ngIf="tipoUsuario==='comprador'">
+      <small>Cantidad</small>
       <input  class="form-control"  min="1" name="quantity" value="1" type="number" (change)="onCantidadChange($event)" >
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" (click)="cotizableClickedEmit()" type="button">Cotizar</button>
       </div>
     </div>
-    
-    
+
     <button class="btn btn-primary" (click)="cotizableClickedEmit()" *ngIf="tipoUsuario==='proveedor'">Editar</button>
   </div>
 </div>
