@@ -59,8 +59,10 @@ La aplicación Cotiza Fácil fue desarrollada para ofrecer a compradores la opor
   Cliente/Servidor
   
   Patrones de Mensajería EAI 
+  
    Return address 
-    ![Test Image 1](diagramas/ReturnAddress.png)
+   
+   ![Test Image 1](diagramas/ReturnAddress.png)
     
    Scatter-Gather 
     
