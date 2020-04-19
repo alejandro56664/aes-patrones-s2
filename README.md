@@ -14,6 +14,15 @@ La aplicación Cotiza Fácil fue desarrollada para ofrecer a compradores la opor
 |R06 | Se debe permitir que los proveedores oferten sus precios para una cotización registrada por un cliente, una vez se encuentre completa la oferta para la misma se debe notificar al cliente por medio de un Email y SMS |
 |R07 |El cliente podrá ver una serie de estadísticas de manera gráfica acerca del estado de las aplicaciones hechas por todos los proveedores (Histórico de los proveedores y sus respectivas ofertas) |
 
+### Restricciones a cumplir
+
+|Código |Descripción |
+| --- | --- |
+|C01 | Los cambios que ocurran en las transacciones de negocio deberán reflejarse en tiempo real |
+|C02 | Se requiere que el número de intercambios de información entre los participantes sea el menor posible. |
+|C03 | Integración con plataformas de proveedores con reconfiguración flexible (Realizar cambios sin necesidad de reiniciar el sistema) |
+
+
 ## Atributos de Calidad de la solución
 | Atributo | Descripcion |
 | --- | --- |
@@ -32,6 +41,7 @@ La aplicación Cotiza Fácil fue desarrollada para ofrecer a compradores la opor
 
 ### Patrón nuclear
   Publicador/Suscriptor
+  
 ### Patrones complementarios
   Capas
   Cliente/Servidor
