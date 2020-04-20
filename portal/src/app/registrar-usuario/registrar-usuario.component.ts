@@ -29,8 +29,8 @@ export class RegistrarUsuarioComponent implements OnInit {
             tipo: ['', Validators.required],
             nombre: ['', Validators.required],
             apellido: ['', Validators.required],
-            email: ['', Validators.required, Validators.email],
-            celular: ['', Validators.required, Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+            celular: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }

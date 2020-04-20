@@ -45,13 +45,13 @@
 
             <div class="form-group">
                 <label for="imagen">Url Imagen</label>
-                <input type="url" formControlName="imagen" class="form-control" [(ngModel)]="imagen"
+                <input type="url" formControlName="imagen" class="form-control"
                     [ngClass]="{ 'is-invalid': submitted && f.imagen.errors }" />
                 <div *ngIf="submitted && f.imagen.errors" class="invalid-feedback">
                     <div *ngIf="f.imagen.errors.required">Necesitas poner una URL de imagen para tu bien o servicio
                     </div>
                 </div>
-                <img [src]="imagen == '' ? 'assets/noimage.png' : imagen" class="card-img-top ">
+                <img [src]="this.cotizable.imagen == '' ? 'assets/noimage.png' : this.cotizable.imagen" class="card-img-top ">
             </div>
 
             <div class="form-group" *ngIf="modoOperacion === 'registrar'">

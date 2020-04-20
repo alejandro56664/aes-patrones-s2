@@ -25,7 +25,7 @@ export class CrearCotizacionComponent {
         let cotizacion = new Cotizacion();
 
         cotizacion.idSolicitud = this.idSolicitud;
-        cotizacion.idProveedor = this.currentUser.id;
+        cotizacion.idProveedor = this.currentUser._id;
         cotizacion.nombreProveedor = this.currentUser.nombre;
         cotizacion.precio = this.precio;
         cotizacion.fechaCreacion = new Date();
@@ -41,7 +41,7 @@ export class CrearCotizacionComponent {
         let cotizacion = this.crearCotizacion();
         console.log(cotizacion)
         //enviar al servicio para crear la cotización
-        this.solicitudCotizacion.respond(this.currentUser.id, cotizacion)
+        this.solicitudCotizacion.respond(this.currentUser._id, cotizacion)
             .pipe(first())
             .subscribe(
                 data => {

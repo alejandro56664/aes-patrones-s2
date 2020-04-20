@@ -2,7 +2,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
-const User = db.User;
+const catalogoService = require('../catalogo/catalogo.service');
+
+const Usuario = db.Usuario;
 
 module.exports = {
     authenticate,
@@ -13,8 +15,9 @@ module.exports = {
     delete: _delete
 };
 
-async function authenticate({ username, password }) {
-    const user = await User.findOne({ username });
+async function authenticate({ email, password }) {
+
+    const user = await Usuario.findOne({ email });
     if (user && bcrypt.compareSync(password, user.hash)) {
         const { hash, ...userWithoutHash } = user.toObject();
         const token = jwt.sign({ sub: user.id }, config.secret);
@@ -26,20 +29,20 @@ async function authenticate({ username, password }) {
 }
 
 async function getAll() {
-    return await User.find().select('-hash');
+    return await Usuario.find().select('-hash');
 }
 
 async function getById(id) {
-    return await User.findById(id).select('-hash');
+    return await Usuario.findById(id).select('-hash');
 }
 
 async function create(userParam) {
     // validate
-    if (await User.findOne({ username: userParam.username })) {
-        throw 'Username "' + userParam.username + '" is already taken';
+    if (await Usuario.findOne({ email: userParam.email })) {
+        throw 'Username "' + userParam.email + '" is already taken';
     }
 
-    const user = new User(userParam);
+    const user = new Usuario(userParam);
 
     // hash password
     if (userParam.password) {
@@ -48,15 +51,22 @@ async function create(userParam) {
 
     // save user
     await user.save();
+
+    //una vez guardado, si es proveedor creamos el catalogo por defecto
+    if(userParam.tipo === 'proveedor'){
+        console.log('Se crea catálogo por defecto para el usuario proveedor con id: ', user._id)
+        catalogoService.registerDefault(user._id)
+    }
+    
 }
 
 async function update(id, userParam) {
-    const user = await User.findById(id);
+    const user = await Usuario.findById(id);
 
     // validate
     if (!user) throw 'User not found';
-    if (user.username !== userParam.username && await User.findOne({ username: userParam.username })) {
-        throw 'Username "' + userParam.username + '" is already taken';
+    if (user.email !== userParam.email && await Usuario.findOne({ email: userParam.email })) {
+        throw 'email "' + userParam.email + '" is already taken';
     }
 
     // hash password if it was entered
@@ -71,5 +81,6 @@ async function update(id, userParam) {
 }
 
 async function _delete(id) {
-    await User.findByIdAndRemove(id);
+    await Usuario.findByIdAndRemove(id);
+    await catalogoService.delete(id);
 }

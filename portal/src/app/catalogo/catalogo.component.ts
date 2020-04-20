@@ -18,7 +18,8 @@ export class CatalogoComponent implements OnInit {
 
     ngOnInit() {
         this.currentUser = this.authenticationService.currentUserValue;
-        this.loadConfig(this.currentUser.id);
+       
+        this.loadConfig(this.currentUser._id);
     }
 
     private loadConfig(idUsuario) {
@@ -41,7 +42,8 @@ export class CatalogoComponent implements OnInit {
 
     onCotizableClick(evento) {
         if(this.currentUser.tipo==='proveedor'){
-            this.router.navigateByUrl(`/catalogo/${evento.id}/gestionar`);
+            this.router.navigate(['catalogo','gestionar'], { state: { cotizable: evento.cotizable } });
+            //this.router.navigateByUrl(`/catalogo/${evento.id}/gestionar`);
         }
     }
 
@@ -54,7 +56,8 @@ export class CatalogoComponent implements OnInit {
     onAnadirClick(){
         if(this.currentUser.tipo==='proveedor'){
             if(this.configuracion.tipo === 'interno'){
-                this.router.navigateByUrl(`/catalogo/registrar`);
+                this.router.navigate(['catalogo','registrar'], { state: { cotizable: new Cotizable() } });
+                //this.router.navigateByUrl(`/catalogo/${evento.id}/gestionar`);
             } else {
                 this.alertService.error('Tienes actualmente configurado un catálogo externo. Para agregar elementos al catálogo debes configurarlo como interno');
             }

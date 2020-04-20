@@ -6,6 +6,7 @@ import { first, switchMap } from 'rxjs/operators';
 import { AlertService, CatalogoService, AuthenticationService } from '@/_services';
 import { Cotizable, Usuario } from '@/_models'
 import { Observable } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({ selector: 'gestionar-cotizable', templateUrl: 'gestionar-cotizable.component.html' })
 export class GestionarCotizableComponent implements OnInit {
@@ -14,8 +15,7 @@ export class GestionarCotizableComponent implements OnInit {
     submitted = false;
     modoOperacion: string;//modo registrar, modo gestionar
     currentUser: Usuario;
-    cotizable$: Observable<Cotizable>;
-    idCotizable: number;
+    cotizable: Cotizable;//cotizable$: Observable<Cotizable>;
     imagen: string;
     constructor(
         
@@ -25,7 +25,10 @@ export class GestionarCotizableComponent implements OnInit {
         private catalogoService: CatalogoService,
         private alertService: AlertService,
         private authenticationService: AuthenticationService
-    ) {}
+    ) {
+        this.cotizable = this.router.getCurrentNavigation().extras.state.cotizable;
+        console.log('cotizable recibido en gestion-cotizable.componente', this.cotizable)
+    }
 
     ngOnInit() {
         this.currentUser = this.authenticationService.currentUserValue;
@@ -36,16 +39,9 @@ export class GestionarCotizableComponent implements OnInit {
             this.registerForm = this.crearFormulario();
             this.modoOperacion = 'registrar'
         } else { //si vamos a gestionar: editar o eliminar
+           
             this.modoOperacion = 'gestionar'
-            this.cotizable$ = this.route.paramMap.pipe(
-                switchMap((params: ParamMap) =>{
-                    this.idCotizable = +params.get('idCotizable')
-                    return this.catalogoService.get(this.idCotizable)
-                })
-            );
-            this.cotizable$.subscribe(bien => {
-                this.registerForm = this.crearFormulario(bien)
-            })
+            this.registerForm = this.crearFormulario(this.cotizable)
         }
     }
     
@@ -64,8 +60,46 @@ export class GestionarCotizableComponent implements OnInit {
             return;
         }
 
+        if(this.modoOperacion==='registrar'){
+            this.registrar();
+        } else {
+            this.actualizar();
+        }
+
+    }
+
+    private crearFormulario(bien?: Cotizable) {
+        if(!bien) bien = new Cotizable()
+        return this.formBuilder.group({
+            tipo: [bien.tipo || '', Validators.required],
+            titulo: [bien.titulo || '', Validators.required],
+            descripcion: [bien.descripcion || '', Validators.required],
+            imagen: [bien.imagen || '', Validators.required],
+            codigo: [bien.codigo || '', [Validators.required, Validators.minLength(6)]],
+            _id: bien._id
+        });
+    }
+
+    onEliminarClick(){
+        console.log('click en eliminar')
         this.loading = true;
-        this.catalogoService.register(this.currentUser.id, this.registerForm.value)
+        this.catalogoService.delete(this.cotizable._id)
+                        .pipe(first())
+                        .subscribe(
+                            data => {
+                                this.alertService.success('El Bien/Servicio ha sido eliminado exitosamente', true);
+                                this.router.navigate(['/catalogo/buscarporusuario/'+this.currentUser ]);
+                            },
+                            error => {
+                                this.alertService.error(error);
+                                this.loading = false;
+                            });
+    }
+
+
+    private registrar(){
+        this.loading = true;
+        this.catalogoService.register(this.currentUser._id, this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -78,32 +112,19 @@ export class GestionarCotizableComponent implements OnInit {
                 });
     }
 
-    private crearFormulario(bien?: Cotizable) {
-        if(!bien) bien = new Cotizable()
-        return this.formBuilder.group({
-            tipo: [bien.tipo || '', Validators.required],
-            titulo: [bien.titulo || '', Validators.required],
-            descripcion: [bien.descripcion || '', Validators.required],
-            imagen: [bien.imagen || '', Validators.required],
-            codigo: [bien.codigo || '', [Validators.required, Validators.minLength(6)]],
-            id_usu_proveedor: this.currentUser.id
-        });
-    }
-
-    onEliminarClick(){
-        console.log('click en eliminar')
+    private actualizar(){
         this.loading = true;
-        this.catalogoService.delete(this.currentUser.id, this.idCotizable)
-                        .pipe(first())
-                        .subscribe(
-                            data => {
-                                this.alertService.success('El Bien/Servicio ha sido eliminado exitosamente', true);
-                                this.router.navigate(['/catalogo/buscarporusuario/'+this.currentUser ]);
-                            },
-                            error => {
-                                this.alertService.error(error);
-                                this.loading = false;
-                            });
+        this.catalogoService.update(this.registerForm.value._id, this.registerForm.value)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.alertService.success('Su Bien/Servicio ha sido actualizado exitosamente', true);
+                    this.router.navigate(['/catalogo/'+this.currentUser ]);
+                },
+                error => {
+                    this.alertService.error(error);
+                    this.loading = false;
+                });
     }
 
 }

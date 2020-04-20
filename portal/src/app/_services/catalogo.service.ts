@@ -10,9 +10,15 @@ export class CatalogoService {
     
     constructor(private http: HttpClient) { }
 
+
+    update(id: number, cotizable: Cotizable) {
+        return this.http.post(`${config.apiUrl}/catalogo/item/${id}`, cotizable);
+    }
+
     get(id: number): Observable<Cotizable> {
         return this.http.get<Cotizable>(`${config.apiUrl}/catalogo/item/${id}`);
     }
+
 
     getAll(idCatalogo: number) {
         return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo/${idCatalogo}`);
@@ -21,6 +27,7 @@ export class CatalogoService {
     register(idCatalogo: number, cotizable: Cotizable) {
         return this.http.post(`${config.apiUrl}/catalogo/${idCatalogo}/registrar`, cotizable);
     }
+
 
     configure(idCatalogo: number, configuracion: ConfiguracionCatalogo) {
         return this.http.post(`${config.apiUrl}/catalogo/${idCatalogo}/configuracion`, configuracion);
@@ -31,10 +38,10 @@ export class CatalogoService {
     }
 
     search(frase: string): Observable<Cotizable[]> {
-        return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo/buscar?=${frase}`);
+        return this.http.get<Cotizable[]>(`${config.apiUrl}/catalogo/buscar?q=${frase}`);
     }
 
-    delete(idCatalogo: number, id: number) {
-        return this.http.delete(`${config.apiUrl}/catalogo/${idCatalogo}/item/${id}`);
+    delete( id: number) {
+        return this.http.delete(`${config.apiUrl}/catalogo/item/${id}`);
     }
 }

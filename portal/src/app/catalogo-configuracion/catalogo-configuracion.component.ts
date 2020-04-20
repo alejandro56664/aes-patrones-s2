@@ -49,7 +49,7 @@ export class CatalogoConfiguracionComponent implements OnInit {
         }
 
         this.loading = true;
-        this.catalogoService.configure(this.currentUser.id, this.configuracionForm.value)
+        this.catalogoService.configure(this.currentUser._id, this.configuracionForm.value)
             .pipe(first())
             .subscribe(
                 data => {
@@ -67,7 +67,7 @@ export class CatalogoConfiguracionComponent implements OnInit {
             tipo: [configuracion.tipo, Validators.required],
             url_buscar: [configuracion.url_buscar || ''],
             url_cotizar: [configuracion.url_cotizar || ''],
-            idProveedor: this.currentUser.id
+            idProveedor: this.currentUser._id
         });
     }
 }

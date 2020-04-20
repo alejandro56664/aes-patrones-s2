@@ -22,7 +22,7 @@ const routes: Routes = [
     { path: 'catalogo/buscarporusuario', component: CatalogoComponent, canActivate: [AuthGuard]},
     { path: 'catalogo/registrar', component: GestionarCotizableComponent, canActivate: [AuthGuard]},
     { path: 'catalogo/configurar', component: CatalogoConfiguracionComponent, canActivate: [AuthGuard]},
-    { path: 'catalogo/:idCotizable/gestionar', component: GestionarCotizableComponent, canActivate: [AuthGuard]},
+    { path: 'catalogo/gestionar', component: GestionarCotizableComponent, canActivate: [AuthGuard]},
 
     //común
     { path: 'solicitud-cotizacion', component: MisSolicitudesComponent, canActivate: [AuthGuard]},

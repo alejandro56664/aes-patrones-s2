@@ -43,6 +43,7 @@ export class BuscarCotizablesComponent implements OnInit {
         this.alertService.clear();
 
         this.loading = true;
+        console.log(this.buscarForm.value.terminosDeBusqueda)
         this.catalogoService.search(this.buscarForm.value.terminosDeBusqueda)
             .pipe(first())
             .subscribe(
@@ -59,7 +60,7 @@ export class BuscarCotizablesComponent implements OnInit {
     onCotizableClick(evento) {
         if(this.currentUser.tipo==='comprador'){
             this.loading = true;
-            this.solicitudCotizacionService.register(this.currentUser.id, this.toSolicitudCotizacion(evento))
+            this.solicitudCotizacionService.register(this.currentUser._id, this.toSolicitudCotizacion(evento))
                 .pipe(first())
                 .subscribe(
                     data => {

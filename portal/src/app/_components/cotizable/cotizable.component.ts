@@ -22,8 +22,9 @@ export class CotizableComponent implements OnInit {
     cotizableClickedEmit() {
         
         console.log('la cantidad es: '+ this.cantidad)
+        console.log('cotizable: ', this.cotizable)
         this.cotizableClicked.emit({
-            id: this.cotizable.id,
+            id: this.cotizable._id,
             cotizable: this.cotizable,
             cantidad: this.cantidad
         });

@@ -31,6 +31,7 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage and set current user to null
+        console.log('cerró sesión')
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }

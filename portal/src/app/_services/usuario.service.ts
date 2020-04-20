@@ -12,6 +12,7 @@ export class UserService {
     }
 
     register(user: Usuario) {
+        console.log(user)
         return this.http.post(`${config.apiUrl}/usuarios/registrar`, user);
     }
 

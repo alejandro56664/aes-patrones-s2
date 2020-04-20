@@ -17,7 +17,7 @@ function addService() {
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: '{ "codProveedor": "${row}[codProveedor]", "resultado":[ { "codProducto": "${row}[codProducto]", "descripcion": "${row}[descripcion]", "img": "${row}[image]" } ] }'
+                        body: '[{ "tipo": "${row}[tipo]", "idCatalogo": "${row}[idCatalogo]", "codigo": "${row}[codigo]", "descripcion": "${row}[descripcion]", "imagen": "${row}[imagen]" } ]'
                     },
                     _behaviors: {
                         lookup: [
@@ -30,7 +30,7 @@ function addService() {
                                 "fromDataSource": {
                                   "csv": {
                                     "path": "app/data/catalogo.csv",
-                                    "keyColumn": "codProveedor"
+                                    "keyColumn": "descripcion"
                                   }
                                 },
                                 "into": "${row}"

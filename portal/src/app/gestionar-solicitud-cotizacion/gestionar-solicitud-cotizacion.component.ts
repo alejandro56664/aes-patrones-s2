@@ -34,7 +34,7 @@ export class GestionarSolicitudCotizacionComponent implements OnInit {
         this.route.paramMap.pipe(
             switchMap((params: ParamMap) => {
                 this.idSolicitud = +params.get('idSolicitud')
-                return this.solicitudCotizacionServicio.get(this.currentUser.id, this.idSolicitud)
+                return this.solicitudCotizacionServicio.get(this.currentUser._id, this.idSolicitud)
             })
         ).subscribe(s =>{
             this.solicitud = s

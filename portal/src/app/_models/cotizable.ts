@@ -1,5 +1,5 @@
 export class Cotizable {
-  id: number;
+  _id: number;
   tipo: string;
   titulo: string;
   descripcion: string;

@@ -19,7 +19,7 @@ export class MisSolicitudesComponent implements OnInit {
 
     ngOnInit() {
         this.currentUser = this.authenticationService.currentUserValue;
-        this.traerMisSolicitudesDeCotizacion(this.currentUser.id);
+        this.traerMisSolicitudesDeCotizacion(this.currentUser._id);
     }
 
     

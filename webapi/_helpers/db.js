@@ -4,5 +4,7 @@ mongoose.connect(process.env.MONGODB_URI || config.connectionString, { useCreate
 mongoose.Promise = global.Promise;
 
 module.exports = {
-    User: require('../usuarios/usuario.model')
+    Usuario: require('../usuarios/usuario.model'),
+    Catalogo: require('../catalogo/catalogo.model'),
+    Cotizable: require('../catalogo/cotizable.model')
 };

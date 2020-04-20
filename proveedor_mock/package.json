@@ -8,7 +8,7 @@
     "start": "node src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "johan trigos",
   "license": "ISC",
   "dependencies": {
     "mountebank": "^2.2.0",
