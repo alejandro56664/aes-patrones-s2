@@ -8,19 +8,19 @@ export class SolicitudCotizacionService {
     constructor(private http: HttpClient) { }
 
     getAll(idUsuario: number) {
-        return this.http.get<SolicitudCotizacion[]>(`${config.apiUrl}/usuario/${idUsuario}/solicitudes-cotizacion`);
+        return this.http.get<SolicitudCotizacion[]>(`${config.apiUrl}/rfq/usuario/${idUsuario}/solicitudes-cotizacion`);
     }
 
     get(idUsuario: number, idSolicitud: number){
-        return this.http.get<SolicitudCotizacion>(`${config.apiUrl}/usuario/${idUsuario}/solicitudes-cotizacion/${idSolicitud}`);
+        return this.http.get<SolicitudCotizacion>(`${config.apiUrl}/rfq/usuario/${idUsuario}/solicitudes-cotizacion/${idSolicitud}`);
     }
 
     register(idUsuario: number, solicitudCotizacion: SolicitudCotizacion) {
-        return this.http.post(`${config.apiUrl}/usuario/${idUsuario}/solicitudes-cotizacion/registrar`, solicitudCotizacion);
+        return this.http.post(`${config.apiUrl}/rfq/usuario/${idUsuario}/solicitudes-cotizacion/registrar`, solicitudCotizacion);
     }
 
     respond(idUsuario: number, cotizacion: Cotizacion) {
-        return this.http.post(`${config.apiUrl}/usuario/${idUsuario}/solicitudes-cotizacion/${cotizacion.idSolicitud}/responder`, cotizacion);
+        return this.http.post(`${config.apiUrl}/rfq/usuario/${idUsuario}/solicitudes-cotizacion/${cotizacion.idSolicitud}/responder`, cotizacion);
     }
 
     delete(idUsuario: number, idSolicitudCotizacion: number) {

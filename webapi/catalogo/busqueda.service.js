@@ -1,6 +1,6 @@
 ﻿const catalogoService = require('./catalogo.service');
 const cotizableService = require('./cotizable.service');
-const scatterngather = require('../_helpers/scatterngather');
+const broadcast = require('../_helpers/broadcast');
 
 module.exports = {
    search
@@ -20,10 +20,10 @@ async function search(terms) {
     let catalogosExternos = await catalogoService.externals();
 
     //obtenemos las url
-    let urls = catalogosExternos.map(catalogo => `${catalogo.url_buscar}/${terms}`)
-    console.log(urls)
-    //aquí se aplica el gather-scatter
-    let resultadosExternos = scatterngather.run(urls)
+    let urls = catalogosExternos.map(catalogo => `${catalogo.url_cotizar}/${terms}`)
+
+    //aquí se aplica el gather-scatter, haciendo el broadcast
+    let resultadosExternos = broadcast.runGet(urls)
     
     //por cada catalogo externo hacemos la busqueda
     //recopilamos la respuestas y las mostramos

@@ -9,6 +9,7 @@ const Usuario = db.Usuario;
 module.exports = {
     authenticate,
     getAll,
+    getAllByTipo,
     getById,
     create,
     update,
@@ -30,6 +31,10 @@ async function authenticate({ email, password }) {
 
 async function getAll() {
     return await Usuario.find().select('-hash');
+}
+
+async function getAllByTipo(tipo) {
+    return await Usuario.find({tipo: tipo}).select('-hash');
 }
 
 async function getById(id) {
