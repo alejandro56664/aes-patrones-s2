@@ -47,7 +47,7 @@ public class NotificacionServicio {
 	}
 
 	private boolean verificarErrorContactoInvalido(Resultado<Notificacion> resultado) {
-		HttpClientErrorException exception = (HttpClientErrorException)resultado.getError().getCause();
+		HttpClientErrorException exception = (HttpClientErrorException)resultado.getError();
 		if(exception.getRawStatusCode() == 404) {
 			//si recibimos un 404 es por que el contacto es desconocido.
 			return procesarContactoDesconocido(resultado.getContenido());

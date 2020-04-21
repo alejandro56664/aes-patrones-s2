@@ -6,7 +6,7 @@ const rfqService = require('./rfq.service');
 router.get('/usuario/:idUsuario/solicitudes-cotizacion', getAll);
 router.get('/usuario/:idUsuario/solicitudes-cotizacion/:id', getById);
 router.post('/usuario/:idUsuario/solicitudes-cotizacion/registrar', register);
-router.post('/usuario/:idUsuario/solicitudes-cotizacion/responder', respond);
+router.post('/usuario/:idUsuario/solicitudes-cotizacion/:id/responder', respond);
 router.delete('/usuario/:idUsuario/solicitudes-cotizacion/:id', _delete);
 
 module.exports = router;
@@ -14,7 +14,7 @@ module.exports = router;
 
 // Servicios para la entidad Cotizable
 function register(req, res, next) {
-    rfqService.create(req.params.idUsuario, req.body)
+    rfqService.register(req.params.idUsuario, req.body)
             .then(() => res.json({}))
             .catch(err => next(err));
 }
@@ -32,7 +32,7 @@ function getById(req, res, next) {
 }
 
 function respond(req, res, next) {
-    rfqService.respond(req.params.idUsuario, req.body)
+    rfqService.respond(req.params.idUsuario, req.params.id, req.body)
                 .then(() => res.json({}))
                 .catch(err => next(err));
 }

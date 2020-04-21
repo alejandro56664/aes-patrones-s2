@@ -27,7 +27,7 @@ const routes: Routes = [
     //común
     { path: 'solicitud-cotizacion', component: MisSolicitudesComponent, canActivate: [AuthGuard]},
      { path: 'solicitud-cotizacion', component: MisSolicitudesComponent, canActivate: [AuthGuard]},
-    { path: 'solicitud-cotizacion/:idSolicitud/gestionar', component: GestionarSolicitudCotizacionComponent, canActivate: [AuthGuard]},
+    { path: 'solicitud-cotizacion/gestionar', component: GestionarSolicitudCotizacionComponent, canActivate: [AuthGuard]},
 
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistrarUsuarioComponent },

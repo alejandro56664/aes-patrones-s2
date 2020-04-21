@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, Input } from '@angular/core';
-import { ParamMap, ActivatedRoute } from '@angular/router';
+import { ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { SolicitudCotizacionService, AuthenticationService } from '@/_services';
 import { SolicitudCotizacion, Usuario, Cotizacion } from '@/_models';
@@ -23,20 +23,18 @@ export class GestionarSolicitudCotizacionComponent implements OnInit {
     cotizacionesParaMostrar: Cotizacion[] = [];
 
     constructor(
-        private route: ActivatedRoute,
+        private router: Router,
         private solicitudCotizacionServicio: SolicitudCotizacionService,
         private authenticationService: AuthenticationService
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
+        this.idSolicitud = this.router.getCurrentNavigation().extras.state.idSolicitud;
+        console.log('GestionarSolicitudCotizacionComponent: idSolicitud: ', this.idSolicitud)
     }
 
     ngOnInit() {
-        this.route.paramMap.pipe(
-            switchMap((params: ParamMap) => {
-                this.idSolicitud = +params.get('idSolicitud')
-                return this.solicitudCotizacionServicio.get(this.currentUser._id, this.idSolicitud)
-            })
-        ).subscribe(s =>{
+        this.solicitudCotizacionServicio.get(this.currentUser._id, this.idSolicitud)
+        .subscribe(s =>{
             this.solicitud = s
             this.solicitud.cotizaciones = s.cotizaciones || []
             //esta tarea se puede quitar y hacerlo desde el backend

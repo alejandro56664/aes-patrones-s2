@@ -43,7 +43,6 @@ export class CatalogoComponent implements OnInit {
     onCotizableClick(evento) {
         if(this.currentUser.tipo==='proveedor'){
             this.router.navigate(['catalogo','gestionar'], { state: { cotizable: evento.cotizable } });
-            //this.router.navigateByUrl(`/catalogo/${evento.id}/gestionar`);
         }
     }
 

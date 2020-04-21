@@ -21,7 +21,6 @@ export class GestionarCotizableComponent implements OnInit {
         
         private formBuilder: FormBuilder,
         private router: Router,
-        private route: ActivatedRoute,
         private catalogoService: CatalogoService,
         private alertService: AlertService,
         private authenticationService: AuthenticationService

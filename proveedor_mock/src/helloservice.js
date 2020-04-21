@@ -9,7 +9,7 @@ function addService() {
             predicates: [ {
                 equals: {
                     method: "GET",
-                    "path": "/"
+                    "path": "/hello"
                 }
             }],
             responses: [

@@ -15,7 +15,8 @@ app.use(jwt());
 
 // api routes
 app.use('/usuarios', require('./usuarios/usuario.controller'));
-app.use('/catalogo', require('./catalogo/catalogo.controller'))
+app.use('/catalogo', require('./catalogo/catalogo.controller'));
+app.use('/rfq', require('./procesador-rfq/rfq.controller'))
 // global error handler
 app.use(errorHandler);
 

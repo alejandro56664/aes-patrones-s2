@@ -2,15 +2,21 @@ const mbHelper = require('./mountebank-helper');
 const settings = require('./settings');
 
 function addService() {
-    const response = { message: "Exitoso" }
+    const response = { 
+            idSolicitud: "${row}",
+            idProveedor: "",
+            precio: "50.5",
+            nombreProveedor:  "Proveedor_Externo",
+            fechaCreacion:  Date.now()
+    }
 
     const stubs = [
         {
-            predicates: [ {
-                equals: {
-                    method: "GET",
-                    "path": "/solicitud/cotizacion"
-                }
+            predicates: [{
+                and: [
+                    { equals: { method: "POST" } },
+                    { startsWith: { "path": "/solicitud/cotizacion/" } }
+                ]
             }],
             responses: [
                 {
@@ -20,6 +26,10 @@ function addService() {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify(response)
+                    },
+                    _behaviors: {
+                        wait: 1500,
+                        //"decorate": "(config) => { var pad = function (number) { return (number < 10) ? '0' + number : number.toString(); }, now = new Date(), time = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()); config.response.body = config.response.body.replace('${TIME}', time); }"
                     }
                 }
             ]

@@ -29,8 +29,9 @@ export class MisSolicitudesComponent implements OnInit {
     }
 
     clickSolicitudCotizacion(id: number) {
-        console.log(id)
-        this.router.navigateByUrl(`/solicitud-cotizacion/${id}/gestionar`);
+        console.log('MisSolicitudesComponent: ', id)
+        this.router.navigate(['solicitud-cotizacion','gestionar'], { state: { idSolicitud: id } });
+        
       }
 
 }
