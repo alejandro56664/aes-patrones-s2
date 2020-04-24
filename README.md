@@ -45,18 +45,13 @@ La aplicación Cotiza Fácil fue desarrollada para ofrecer a compradores la opor
 ### Patrón nuclear
   Publicador/Suscriptor
   
-    
-  ![Test Image 1](diagramas/Publish-Suscriber.png)
-  
-  
 ### Patrones complementarios
-  Capas:
-  
+  *Capas:*
   
   ![Test Image 1](diagramas/Patron-Capas.png)
   
   
-  Cliente/Servidor
+  *Cliente/Servidor*
   
   Patrones de Mensajería EAI 
   
@@ -81,7 +76,7 @@ MongoDB
 
 
 ## Vistas 4+1
-### Vista Lògica
+### Vista Lógica
 
   ![Test Image 1](diagramas/Cotizador-Vista-logica.png)
 
@@ -104,31 +99,13 @@ MongoDB
   ![Test Image 1](diagramas/Cotizador-Arquitectura-Alterna.png)
 
 
-
-
-
 ### Referencias
 
-    K. H. K. H. Frank Buschmann, «Publish and Subscribe,» de PATTERN-ORIENTED SOFTWARE ARCHITECTURE A Pattern Language for Distributed Computing, West Sussex, England, John Wiley & Sons Ltd, 2007, pp. 234-236.​
-
-​
-
-    B. W. Gregor Hohpe, «Enterprise Integration Patterns,» [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/ReturnAddress.html. [Último acceso: 05 04 2020].​
-
-​
-
-    B. W. Gregor Hohpe, «Enterprise Integration Patterns,» [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html. [Último acceso: 05 04 2020].​
-
-​
-
-    «Canonical Data Model,» Enterprise Integration Patterns, [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataModel.html. [Último acceso: 17 04 2020].​
-
-​
-
-    C. Richardson, «Scale Cube,» [En línea]. Available: https://microservices.io/articles/scalecube.html. [Último acceso: 17 04 2020].​
-
-​
-
-    Google, «Set up High-Availability Kubernetes Masters,» Google, [En línea]. Available: https://kubernetes.io/docs/tasks/administer-cluster/highly-available-master/. [Último acceso: 17 04 2020].
+    - K. H. K. H. Frank Buschmann, «Publish and Subscribe,» de PATTERN-ORIENTED SOFTWARE ARCHITECTURE A Pattern Language for Distributed Computing, West Sussex, England, John Wiley & Sons Ltd, 2007, pp. 234-236.​
+    - B. W. Gregor Hohpe, «Enterprise Integration Patterns,» [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/ReturnAddress.html. [Último acceso: 05 04 2020].​
+    - B. W. Gregor Hohpe, «Enterprise Integration Patterns,» [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html. [Último acceso: 05 04 2020].​
+    - «Canonical Data Model,» Enterprise Integration Patterns, [En línea]. Available: https://www.enterpriseintegrationpatterns.com/patterns/messaging/CanonicalDataModel.html. [Último acceso: 17 04 2020].​
+    - C. Richardson, «Scale Cube,» [En línea]. Available: https://microservices.io/articles/scalecube.html. [Último acceso: 17 04 2020].​
+    - Google, «Set up High-Availability Kubernetes Masters,» Google, [En línea]. Available: https://kubernetes.io/docs/tasks/administer-cluster/highly-available-master/. [Último acceso: 17 04 2020].
 
 

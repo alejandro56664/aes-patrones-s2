@@ -3,8 +3,8 @@ const settings = require('./settings');
 
 function addService() {
     const response = { 
-            idSolicitud: "${row}",
-            idProveedor: "",
+            idSolicitud: "",
+            idProveedor: "5e9cffb671108c574026bc7e",
             precio: "50.5",
             nombreProveedor:  "Proveedor_Externo",
             fechaCreacion:  Date.now()

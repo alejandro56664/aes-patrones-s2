@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
     idUsuario: {type: String},
     cantidad: { type: Number},
-    cotizable: { type: Schema.Types.ObjectId, ref: 'Cotizable' },
+    cotizable:  { type: Schema.Types.ObjectId, ref: 'Cotizable' },
     fechaCreacion: { type: Date, default: Date.now },
     //cotizaciones: [{ type: Schema.Types.ObjectId, ref: 'Cotizacion' }]
 });

@@ -3,6 +3,7 @@ const broadcast = require('../_helpers/broadcast');
 const notificador = require('../_helpers/notificador');
 const catalogoService = require('../catalogo/catalogo.service');
 const userService = require('../usuarios/usuario.service');
+const cotizableService = require('../catalogo/cotizable.service');
 
 const RFQ = db.RFQ;
 const Cotizacion = db.Cotizacion;
@@ -27,13 +28,23 @@ async function getAll(idUsuario) {
 }
 
 async function register(idUsuario, rfqParam) {
+    console.log('Solicitud de registro ', rfqParam)
+
+    if(rfqParam.cotizable.externo){
+        console.log('TODO: guardar rfq para externo')
+       
+    } else {
+       
+    }
+
     const rfq = new RFQ(rfqParam);
+
     //TODO: agregar idUsuario
     rfq.idUsuario = idUsuario
     await rfq.save();
 
     rfqParam.idSolicitud = rfq._id
-
+    console.log('Se guardo la solicitud: ')
     //hacemos el scatter and gather a los proveedores
     await scatterngather(rfqParam);
 }
@@ -113,7 +124,7 @@ async function buscarProveedores(rfq){
 
 async function aggregate(resultados){
     let result = []
-    if(resultasdos){
+    if(resultados){
         resultados.sort((a, b) =>  a.precio - b.precio);
         //solo devolvemos los mejores 3
         return resultados.slice(0,3)

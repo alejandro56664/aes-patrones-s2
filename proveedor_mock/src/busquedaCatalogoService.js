@@ -17,7 +17,7 @@ function addService() {
                         headers: {
                             "Content-Type": "application/json"
                         },
-                        body: '[{ "tipo": "${row}[tipo]", "idCatalogo": "${row}[idCatalogo]", "codigo": "${row}[codigo]", "descripcion": "${row}[descripcion]", "imagen": "${row}[imagen]" } ]'
+                        body: '[{ "externo": "${row}[externo]", "tipo": "${row}[tipo]", "idCatalogo": "${row}[idCatalogo]", "codigo": "${row}[codigo]", "descripcion": "${row}[descripcion]", "imagen": "${row}[imagen]", "fecha_modificacion": "${row}[fecha_modificacion]", "fecha_creacion": "${row}[fecha_creacion]", "titulo": "${row}[titulo]" } ]'
                     },
                     _behaviors: {
                         lookup: [
