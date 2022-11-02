@@ -11,7 +11,7 @@
   "author": "johan trigos",
   "license": "ISC",
   "dependencies": {
-    "mountebank": "^2.2.0",
+    "mountebank": "^2.8.1",
     "node-fetch": "^2.6.0"
   }
 }
